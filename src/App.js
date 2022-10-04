@@ -2,11 +2,16 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Course from "./pages/Course";
+import Header from "./components/Header";
+import { Router } from "routes";
 function App() {
   return (
-    <Routes>
-      <Route exact path="/" element={<Course />} />
-    </Routes>
+    <>
+      <Header />
+      <Routes>
+        <Route exact path="/" element={<Course />} />
+      </Routes>
+    </>
   );
 }
 
