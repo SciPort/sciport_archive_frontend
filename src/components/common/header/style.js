@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Head = styled.div`
   width: 100%;
-  height: 100px;
+  height: 12vh;
   border-bottom: 1px solid;
   display : flex;
   justify-content : space-around;
