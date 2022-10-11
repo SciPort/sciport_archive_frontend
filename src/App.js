@@ -1,8 +1,7 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Course from "./pages/Course";
-import Header from "./components/Header";
+import Header from "./components";
 function App() {
   return (
     <>
