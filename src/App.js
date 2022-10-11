@@ -1,14 +1,14 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Course from "./pages/Course";
+import Login from "../src/components/page/login"
 import Header from "./components/Header";
 function App() {
   return (
     <>
       <Header />
       <Routes>
-        <Route exact path="/" element={<Course />} />
+        <Route exact path="/login" element={<Login />} />
       </Routes>
     </>
   );
