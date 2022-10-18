@@ -10,7 +10,7 @@ const Header = () => {
         </Link>
       </S.Home>
       <S.Title>
-        SCIENCE HALL<br></br>ARCHIVE
+        <span>SCIENCE HALL</span><br></br>ARCHIVE
       </S.Title>
       <S.Login>
         <span>로그인</span>
