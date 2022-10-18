@@ -28,7 +28,7 @@ export const Login = styled.div`
     
   }
 `;
-export const LoginForm = styled.div`
+export const LoginForm = styled.form`
   margin-top: 2%;
   display: flex;
   flex-direction: row;
@@ -66,5 +66,6 @@ export const SubmitForm = styled.div`
     height: 100%;
     border: none;
     color: white;
+    font-size: 120%;
   }
 `;
