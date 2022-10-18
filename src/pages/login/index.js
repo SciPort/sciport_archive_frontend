@@ -6,13 +6,24 @@ const Index = () => {
     id: "",
     password: "",
   });
-  //
+  const LoginFunc = () => {
+    console.log('로그인 버튼 눌림')
+    if(!loginData.id){ 
+      return alert("아이디를 입력해주세요.")
+    }
+    else if(!loginData.password) {
+      return alert("비밀번호를 입력해주세요.")
+    }
+    else {
+      // 코드
+    }
+  }
   return (
     <S.Wrapper>
       <S.Login>
         <span>Login</span>
         <p>회원 서비스를 이용하려면 로그인이 필요합니다.<br/>아이디와 비밀번호를 입력 후 로그인 하십시오.</p>
-        <S.LoginForm>
+        <S.LoginForm onSubmit={LoginFunc}>
           <div>
             <input 
               onChange={(e) => {
