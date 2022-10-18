@@ -12,9 +12,13 @@ const index = () => {
             <input placeholder="아이디 입력" type='text' />
             <input placeholder="비밀번호 입력" type='password' />
           </div>
-          <input placeholder="로그인" type='submit' />
+          <input value="로그인" type='submit' />
         </S.LoginForm>
-      </S.Login>
+        <S.SubmitForm>
+          <button style={{backgroundColor: "#2D97F8"}}>회원가입</button>
+          <button style={{backgroundColor: "#2D72F8"}}>아이디/비밀번호 찾기</button>
+        </S.SubmitForm>
+     </S.Login>
     </S.Wrapper>
   );
 };
