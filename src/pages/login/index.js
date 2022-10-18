@@ -1,18 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./style";
 
-const index = () => {
+const Index = () => {
+  const [loginData, setLoginData] = useState({
+    id: "",
+    password: "",
+  });
+  //
   return (
     <S.Wrapper>
       <S.Login>
-        <span>로그인</span>
+        <span>Login</span>
         <p>회원 서비스를 이용하려면 로그인이 필요합니다.<br/>아이디와 비밀번호를 입력 후 로그인 하십시오.</p>
         <S.LoginForm>
           <div>
-            <input placeholder="아이디 입력" type='text' />
-            <input placeholder="비밀번호 입력" type='password' />
+            <input 
+              onChange={(e) => {
+                setLoginData({...loginData, id: e.target.value})
+                console.log(loginData.id)
+              }}
+              placeholder="아이디 입력" 
+              type='text' 
+            />
+            <input 
+              onChange={(e) => {
+                setLoginData({...loginData, password: e.target.value})
+                console.log(loginData.password)
+              }}
+              placeholder="비밀번호 입력" 
+              type='password' 
+            />
           </div>
-          <input value="로그인" type='submit' />
+          <input value="로그인" type="submit" />
         </S.LoginForm>
         <S.SubmitForm>
           <button style={{backgroundColor: "#2D97F8"}}>회원가입</button>
@@ -23,4 +42,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
