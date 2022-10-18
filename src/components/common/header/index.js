@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import * as S from "./style";
 const Header = () => {
   return (
     <S.Head>
       <S.Home>
-        <a href="/">
-          SCIPort<br></br>부산국립과학관
-        </a>
+        <Link to="/">
+          <span>SCI</span>Port<br></br>부산국립과학관
+        </Link>
       </S.Home>
       <S.Title>
         SCIENCE HALL<br></br>ARCHIVE

@@ -11,6 +11,13 @@ export const Head = styled.div`
 export const Home = styled.div`
   font-size: 24px;
   font-weight: bold;
+
+  a {
+    text-decoration: none;
+  }
+  span {
+    color: 
+  }
 `;
 export const Login = styled.div`
     display : flex;
@@ -19,5 +26,7 @@ export const Login = styled.div`
 `;
 
 export const Title = styled.span`
-
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
 `
