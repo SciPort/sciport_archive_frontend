@@ -16,6 +16,7 @@ export const SearchCon = styled.div`
   justify-content: center;
   align-items: center;
   > input {
+    font-size : 42px;
     width: 50%;
     height: 100px;
   }
