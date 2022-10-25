@@ -1,9 +1,8 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Login from "../src/components/page/login";
-
-import Main from "./pages/main";
+import { Login } from "./pages/login/style";
 import Header from "./components/common/header";
+import Main from "./pages/main";
 function App() {
   return (
     <>

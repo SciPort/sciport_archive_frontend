@@ -1,19 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import * as S from "./style";
+import { AiOutlineUserAdd, AiFillLock } from "react-icons/ai";
+
 const Header = () => {
   return (
     <S.Head>
       <S.Home>
-        <a href="/">
-          SCIPort<br></br>부산국립과학관
-        </a>
+        <Link to="/">
+          <span>SCI</span>Port<br></br>부산국립과학관
+        </Link>
       </S.Home>
       <S.Title>
         SCIENCE HALL<br></br>ARCHIVE
       </S.Title>
       <S.Login>
-        <span>로그인</span>
-        <span>회원가입</span>
+        <AiOutlineUserAdd size="34"></AiOutlineUserAdd>
+        <span>Sign up</span>
+        <AiFillLock size = "34"></AiFillLock>
+        <span>login</span>
       </S.Login>
     </S.Head>
   );
