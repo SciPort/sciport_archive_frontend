@@ -12,7 +12,7 @@ const Header = () => {
         </Link>
       </S.Home>
       <S.Title>
-        SCIENCE HALL<br></br>ARCHIVE
+        <span>SCIENCE HALL</span><br></br>ARCHIVE
       </S.Title>
       <S.Login>
         <AiOutlineUserAdd size="34"></AiOutlineUserAdd>
