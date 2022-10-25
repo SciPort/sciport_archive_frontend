@@ -17,11 +17,13 @@ export const Home = styled.div`
     color: white;
   }
   span {
-    color: blue;
+    color : blue;
   }
 `;
 export const Login = styled.div`
     display : flex;
+    flex-direction : row;
+    align-items : center;
     width : 200px;  
     justify-content : space-around;
     color: white;
