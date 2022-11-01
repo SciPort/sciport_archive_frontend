@@ -15,10 +15,10 @@ const Header = () => {
         <span>SCIENCE HALL</span><br></br>ARCHIVE
       </S.Title>
       <S.Login>
+        <AiFillLock size="34"></AiFillLock>
+        <span>login</span>
         <AiOutlineUserAdd size="34"></AiOutlineUserAdd>
         <span>Sign up</span>
-        <AiFillLock size = "34"></AiFillLock>
-        <span>login</span>
       </S.Login>
     </S.Head>
   );

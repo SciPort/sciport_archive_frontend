@@ -2,11 +2,8 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/login/index";
 import Header from "./components/common/header";
-<<<<<<< HEAD
-import Main from "./pages/main";
-=======
 import Main from "./pages/main"
->>>>>>> f963aed554e83f0b672f89d226066659632abb66
+import Detail from "./pages/detail/detail";
 function App() {
   return (
     <>
@@ -14,6 +11,7 @@ function App() {
       <Routes>
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/" element={<Main />} />
+        <Route exact path="/detail" element={<Detail/>}/>
       </Routes>
     </>
   );
