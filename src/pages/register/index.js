@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import * as S from "./style";
 
 const Index = () => {
+  const [registerData, setRegisterData] = useState({
+    id: "",
+    password: "",
+    passwordCheck: "",
+  });
   return (
     <S.Wrapper>
       <S.Register>
