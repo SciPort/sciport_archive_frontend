@@ -10,6 +10,7 @@ function App() {
       <Header />
       <Routes>
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
         <Route exact path="/" element={<Main />} />
         <Route exact path="/detail" element={<Detail/>}/>
       </Routes>
