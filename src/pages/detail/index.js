@@ -7,7 +7,10 @@ const index = () => {
       <div>
         <h1>내가 green 방학 생활</h1>
       </div>
-      <S.ContentBox></S.ContentBox>
+      <S.ContentBox>
+        <S.LeftBox></S.LeftBox>
+        <S.RightBox></S.RightBox>
+      </S.ContentBox>
     </S.Wrapper>
   );
 };
