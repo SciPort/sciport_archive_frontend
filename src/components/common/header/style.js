@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const Head = styled.div`
   width: 100%;
   height: 12vh;
-  display : flex;
-  justify-content : space-around;
-  align-items : center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   background: rgba(75, 75, 75, 0.5);
 `;
 export const Home = styled.div`
@@ -17,17 +17,23 @@ export const Home = styled.div`
     color: white;
   }
   span {
-    color : blue;
+    color: blue;
   }
 `;
 export const Login = styled.div`
-    display : flex;
-    flex-direction : row;
-    align-items : center;
-    width : 200px;  
-    justify-content : space-around;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 200px;
+  justify-content: space-around;
+  color: white;
+  font-weight: 700;
+  > a {
+    display: flex;
+    align-items: center;
     color: white;
-    font-weight: 700;
+    text-decoration: none;
+  }
 `;
 
 export const Title = styled.span`
@@ -38,6 +44,5 @@ export const Title = styled.span`
 
   span {
     color: blue;
-
   }
-`
+`;
