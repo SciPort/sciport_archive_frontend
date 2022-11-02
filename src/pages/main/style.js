@@ -16,7 +16,7 @@ export const SearchCon = styled.div`
   justify-content: center;
   align-items: center;
   > input {
-    font-size : 42px;
+    font-size: 42px;
     width: 50%;
     height: 100px;
   }
@@ -32,5 +32,5 @@ export const LectureList = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(25%, auto));
-  row-gap :50px;
+  row-gap: 50px;
 `;

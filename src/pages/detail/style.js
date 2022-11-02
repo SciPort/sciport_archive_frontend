@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 88vh;
+  height: auto;
   background-color: lightgrey;
   display: flex;
   flex-direction: column;
@@ -18,6 +18,14 @@ export const Wrapper = styled.div`
 
 export const ContentBox = styled.div`
   width: 80%;
-  height: 100%;
+  height: auto;
   background-color: grey;
+`;
+
+export const LeftBox = styled.div`
+  width: 65%;
+`;
+
+export const RightBox = styled.div`
+  width: 35%;
 `;

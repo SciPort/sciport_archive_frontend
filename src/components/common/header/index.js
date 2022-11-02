@@ -12,13 +12,18 @@ const Header = () => {
         </Link>
       </S.Home>
       <S.Title>
-        <span>SCIENCE HALL</span><br></br>ARCHIVE
+        <span>SCIENCE HALL</span>
+        <br></br>ARCHIVE
       </S.Title>
       <S.Login>
-        <AiOutlineUserAdd size="34"></AiOutlineUserAdd>
-        <span>Sign up</span>
-        <AiFillLock size = "34"></AiFillLock>
-        <span>login</span>
+        <Link to={"/register"}>
+          <AiOutlineUserAdd size="34"></AiOutlineUserAdd>
+          <span>Sign up</span>
+        </Link>
+        <Link to={"/login"}>
+          <AiFillLock size="34"></AiFillLock>
+          <span>login</span>
+        </Link>
       </S.Login>
     </S.Head>
   );

@@ -18,14 +18,13 @@ export const Login = styled.div`
 
   span {
     margin-top: 5%;
-    color: #4F71C9;
+    color: #4f71c9;
     font-size: 250%;
     font-weight: 700;
   }
   p {
-    color: #8D8D8D;
+    color: #8d8d8d;
     font-size: 110%;
-    
   }
 `;
 export const LoginForm = styled.form`
@@ -35,7 +34,7 @@ export const LoginForm = styled.form`
   width: 60%;
   height: 25%;
   background-color: red;
-  
+
   div {
     width: 75%;
     display: flex;
@@ -48,7 +47,7 @@ export const LoginForm = styled.form`
   }
   > input {
     width: 25%;
-    background-color: #244CB1;
+    background-color: #244cb1;
     border: none;
     font-size: 180%;
     font-weight: 600;

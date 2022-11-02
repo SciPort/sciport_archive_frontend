@@ -5,16 +5,19 @@ import Header from "./components/common/header";
 import Main from "./pages/main";
 import Register from "./pages/register/index";
 import Detail from "./pages/detail/index";
+import { RecoilRoot } from "recoil";
 function App() {
   return (
     <>
-      <Header />
-      <Routes>
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/register" element={<Register />} />
-        <Route exact path="/" element={<Main />} />
-        <Route exact path="/detail" element={<Detail />} />
-      </Routes>
+      <RecoilRoot>
+        <Header />
+        <Routes>
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/" element={<Main />} />
+          <Route exact path="/detail" element={<Detail />} />
+        </Routes>
+      </RecoilRoot>
     </>
   );
 }
