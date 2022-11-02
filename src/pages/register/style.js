@@ -18,14 +18,13 @@ export const Register = styled.div`
 
   span {
     margin-top: 5%;
-    color: #4F71C9;
+    color: #4f71c9;
     font-size: 250%;
     font-weight: 700;
   }
   p {
-    color: #8D8D8D;
+    color: #8d8d8d;
     font-size: 110%;
-    
   }
 `;
 export const RegisterForm = styled.form`
@@ -48,7 +47,7 @@ export const RegisterForm = styled.form`
     bottom: 0;
     width: 100%;
     height: 15%;
-    background-color: #2D72F8;
+    background-color: #2d72f8;
     border: none;
     font-size: 180%;
     font-weight: 600;
