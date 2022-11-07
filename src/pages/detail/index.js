@@ -1,5 +1,6 @@
 import React from "react";
 import * as S from "./style";
+import sample1 from "../../../public/sample1.png";
 
 const index = () => {
   return (
@@ -40,7 +41,7 @@ const index = () => {
             <p>유의사항</p>
           </div>
         </S.LeftBox>
-        <S.RightBox></S.RightBox>
+        <S.RightBox>{/* <img src={sample1} alt="" /> */}</S.RightBox>
       </S.ContentBox>
     </S.Wrapper>
   );
