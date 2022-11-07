@@ -27,6 +27,7 @@ export const ContentBox = styled.div`
 
 export const LeftBox = styled.div`
   width: 65%;
+  border-right: 1px solid black;
   /* background-color: white; */
   h2 {
     font-size: 250%;
@@ -46,6 +47,21 @@ export const LeftBox = styled.div`
   div p {
     width: 90%;
     font-size: 130%;
+  }
+  > p {
+    font-size: 130%;
+    margin-left: 5%;
+    width: 90%;
+  }
+  div:last-child {
+    background-color: lightgrey;
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    height: 30vh;
+  }
+  div:last-child p {
+    text-align: start;
   }
 `;
 export const subTitle = styled.h2`

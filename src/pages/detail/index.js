@@ -34,7 +34,7 @@ const index = () => {
               설명
             </p>
           </div>
-          <subTitle>준비물</subTitle>
+          <h2>준비물</h2>
           <p>필기구 등...</p>
           <div>
             <p>유의사항</p>
