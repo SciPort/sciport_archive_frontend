@@ -21,11 +21,15 @@ export const ContentBox = styled.div`
   width: 90%;
   height: auto;
   border-bottom: none;
+  display: flex;
+  flex-direction: row;
 
   /* background-color: grey; */
 `;
 
 export const LeftBox = styled.div`
+  /* padding-top: 5%; */
+  /* margin-top: 5%; */
   width: 65%;
   border-right: 1px solid black;
   /* background-color: white; */
@@ -70,4 +74,45 @@ export const subTitle = styled.h2`
 
 export const RightBox = styled.div`
   width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    width: 70%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  > div {
+    width: 75%;
+    /* border-top: 2px solid black; */
+  }
+`;
+
+export const ListBox = styled.div`
+  /* margin-top: 2%; */
+  padding-left: 3%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  border-bottom: 1px solid black;
+
+  :first-child {
+    border-top: 2px solid black;
+  }
+  :last-child {
+    border-bottom: 2px solid black;
+  }
+  span {
+    display: block;
+    width: 30%;
+  }
+  p {
+    margin-left: 15%;
+    /* float: right; */
+    width: 50%;
+    text-align: start;
+  }
 `;
