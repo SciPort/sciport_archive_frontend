@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "./style";
-import sample1 from "../../../public/sample1.png";
+import sample1 from "../../assets/img/sample1.png";
+import { sampleList } from "../../assets/data/export.js";
 
 const index = () => {
   return (
@@ -41,7 +42,19 @@ const index = () => {
             <p>유의사항</p>
           </div>
         </S.LeftBox>
-        <S.RightBox>{/* <img src={sample1} alt="" /> */}</S.RightBox>
+        <S.RightBox>
+          <img src={sample1} alt="" />
+          <div>
+            {sampleList.map((data, idx) => {
+              return (
+                <S.ListBox>
+                  <span>{data[0]}</span>
+                  <p>{data[1]}</p>
+                </S.ListBox>
+              );
+            })}
+          </div>
+        </S.RightBox>
       </S.ContentBox>
     </S.Wrapper>
   );
