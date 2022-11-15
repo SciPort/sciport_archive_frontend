@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import Lecture from "../../components/lecture";
 import { userState } from "../../components/states";
@@ -8,6 +8,7 @@ import { AiOutlineSearch, AiOutlineArrowDown } from "react-icons/ai";
 import Popup from "../../components/popup";
 export default function Main() {
   const [user, setUser] = useRecoilState(userState);
+  const [close,setClose] = useState(false);
   useEffect(() => {
     const form = { accessToken: localStorage.getItem("accessToken") };
     axios
@@ -38,7 +39,6 @@ export default function Main() {
       <S.SearchCon>
         <S.Cate
           onMouseEnter={() => setClose(true)}
-          onMouseLeave={() => setClose(false)}
         >
           접수상태
           <AiOutlineArrowDown />
