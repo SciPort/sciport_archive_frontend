@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+
+export const Cate = styled.div`
+
+`
+
+
 export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -9,9 +15,10 @@ export const Wrapper = styled.div`
     text-align: center;
   }
 `;
-export const SearchCon = styled.div`
+export const SearchCon = styled.div`  
   width: 100%;
-  height: 350px;
+  height: 100px;
+  margin-top: 75px;
   display: flex;
   justify-content: center;
   align-items: center;
