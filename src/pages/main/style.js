@@ -17,16 +17,9 @@ export const SearchCon = styled.div`
   justify-content: center;
   align-items: center;
   > input {
-    text-indent: 3%;
-    font-size: 24px;
-    width: 30%;
-    height: 60px;
-  }
-  .searchIcon {
-    background-color : #2D97F8;
-    width: 8%;
-    height: 60px;
-    color: white;
+    font-size: 42px;
+    width: 50%;
+    height: 100px;
   }
 `;
 export const LectureCon = styled.div`
@@ -41,14 +34,4 @@ export const LectureList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(25%, auto));
   row-gap: 50px;
-`;
-
-export const Cate = styled.div`
-  width: 12%;
-  height: 60px;
-  display : flex;
-  justify-content : center;
-  align-items : center;
-  font-size : 24px;
-  border : 1px solid black;
 `;
