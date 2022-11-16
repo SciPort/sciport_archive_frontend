@@ -5,7 +5,11 @@ import Header from "./components/common/header";
 import Main from "./pages/main";
 import Register from "./pages/register/index";
 import Detail from "./pages/detail/index";
-import { RecoilRoot } from "recoil";
+import { atom, RecoilRoot } from "recoil";
+export const closeState = atom({
+  key: "close",
+  default: false,
+});
 function App() {
   return (
     <>
