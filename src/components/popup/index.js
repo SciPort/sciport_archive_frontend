@@ -8,6 +8,7 @@ export default function Popup() {
   const list = [
     ["전체", "개인교육", "단체교육", "성인교육"],
     [
+      "전체",
       "겨울학기",
       "봄학기(1)",
       "봄학기(2)",
@@ -16,6 +17,7 @@ export default function Popup() {
       "가을학기(2)",
     ],
     [
+      "전체",
       "유아과학교실",
       "창의탐구교실",
       "실험탐구교실",
@@ -38,7 +40,7 @@ export default function Popup() {
     <S.StyledPopup >
       <S.Wrapper>
         <S.Title>
-          <h1>카테고리 검색</h1> X
+          <h1>카테고리 검색</h1> <span onClick={() => setClose(false)}>X</span>
         </S.Title>
         <h2>강좌 카테고리를 선택해 주세요</h2>
         {CateDiv}
