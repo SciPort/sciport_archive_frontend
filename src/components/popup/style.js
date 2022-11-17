@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   width: 80%;
   height: 80%;
-  margin: 0 auto;
-  background-color: yellow;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,18 +33,29 @@ export const Title = styled.div`
   display : flex;
   flex-direction : row;
   justify-content : center;
+  align-items : center;
+  >span{
+    position : absolute;
+    margin-left : 90%;
+  }
 `;
 
 export const Cate = styled.div`
-  display: flex;
-  flex-direction: row;
+  margin-top : 40px;
+  display: grid;
+  /* grid-template-columns: repeat(auto-fill, minmax(25%, auto)); */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap : none;
   width: 100%;
-  height: 20%;
-  justify-content: space-around;
   font-size: 28px;
   > div {
-    width: 20%;
-    border: 1px solid;
+    background: #f8f8f8;
+    border-left: 1px solid #e5e5e5;
+    height : 50px;
+    display : flex;
+    align-items : center;
+    justify-content : center;
+    color : #999;
     text-align: center;
   }
 `;
