@@ -1,10 +1,18 @@
 import styled from "styled-components";
 
-
 export const Cate = styled.div`
-
-`
-
+  height: 100%;
+  width: 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 160%;
+  background: #e4e1df;
+  &:hover {
+    background: #9d897b;
+    color: white;
+  }
+`;
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -15,7 +23,7 @@ export const Wrapper = styled.div`
     text-align: center;
   }
 `;
-export const SearchCon = styled.div`  
+export const SearchCon = styled.div`
   width: 100%;
   height: 100px;
   margin-top: 75px;
@@ -26,6 +34,10 @@ export const SearchCon = styled.div`
     font-size: 42px;
     width: 50%;
     height: 100px;
+  }
+  .searchIcon{
+    width : auto;
+    height : 80%;
   }
 `;
 export const LectureCon = styled.div`

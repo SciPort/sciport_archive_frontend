@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import { closeState } from "../../App";
 import * as S from "./style";
 export default function Popup() {
+  window.scrollTo({ left : 0 ,top: 0, behavior: "smooth" });
   document.body.style.overflow = "hidden";
   const [close, setClose] = useRecoilState(closeState);
   const list = [
@@ -37,7 +38,7 @@ export default function Popup() {
   ));
 
   return (
-    <S.StyledPopup >
+    <S.StyledPopup>
       <S.Wrapper>
         <S.Title>
           <h1>카테고리 검색</h1> <span onClick={() => setClose(false)}>X</span>
