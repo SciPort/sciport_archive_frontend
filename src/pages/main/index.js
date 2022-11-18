@@ -8,6 +8,7 @@ import { AiOutlineSearch, AiOutlineArrowDown } from "react-icons/ai";
 import Popup from "../../components/popup";
 import { closeState } from "../../App";
 export default function Main() {
+  document.body.style.overflow = "unset";
   const [user, setUser] = useRecoilState(userState);
   const [close, setClose] = useRecoilState(closeState);
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function Main() {
     <S.Wrapper>
       <S.SearchCon>
         <S.Cate onClick={() => setClose(true)}>
-          접수상태
+          카테고리
           <AiOutlineArrowDown />
         </S.Cate>
         <input type="search" placeholder="검색어를 입력하세요"></input>
