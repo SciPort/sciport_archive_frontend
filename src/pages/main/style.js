@@ -11,6 +11,7 @@ export const Cate = styled.div`
   &:hover {
     background: #9d897b;
     color: white;
+    cursor: pointer;
   }
 `;
 
