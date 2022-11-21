@@ -6,15 +6,15 @@ export const Head = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: rgba(75, 75, 75, 0.5);
+  /* background: rgba(75, 75, 75, 0.5); */
+  border-bottom : 1px solid gray;
 `;
 export const Home = styled.div`
   font-size: 24px;
   font-weight: bold;
-
   a {
     text-decoration: none;
-    color: white;
+    color: black;
   }
   span {
     color: blue;
@@ -26,12 +26,12 @@ export const Login = styled.div`
   align-items: center;
   width: 200px;
   justify-content: space-around;
-  color: white;
+  color: black;
   font-weight: 700;
   > a {
     display: flex;
     align-items: center;
-    color: white;
+    color: black;
     text-decoration: none;
   }
 `;
@@ -40,7 +40,7 @@ export const Title = styled.span`
   font-size: 30px;
   font-weight: 700;
   text-align: center;
-  color: white;
+  color: black;
 
   span {
     color: blue;
