@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as S from "./style";
 import { AiOutlineUserAdd, AiFillLock } from "react-icons/ai";
+import { useRecoilState } from "recoil";
 
 const Header = () => {
   return (
