@@ -1,11 +1,16 @@
 import axios from "axios";
-import React, { useEffect } from "react";
-import { useRecoilState } from "recoil";
+import React, { useEffect, useState } from "react";
+import { atom, useRecoilState } from "recoil";
 import Lecture from "../../components/lecture";
 import { userState } from "../../components/states";
 import * as S from "./style";
+import { AiOutlineSearch, AiOutlineArrowDown } from "react-icons/ai";
+import Popup from "../../components/popup";
+import { closeState } from "../../App";
 export default function Main() {
+  document.body.style.overflow = "unset";
   const [user, setUser] = useRecoilState(userState);
+  const [close, setClose] = useRecoilState(closeState);
   useEffect(() => {
     const form = { accessToken: localStorage.getItem("accessToken") };
     axios
@@ -34,11 +39,19 @@ export default function Main() {
   return (
     <S.Wrapper>
       <S.SearchCon>
-        <input type="search"></input>
+        <S.Cate onClick={() => setClose(true)}>
+          카테고리
+          <AiOutlineArrowDown />
+        </S.Cate>
+        <input type="search" placeholder="검색어를 입력하세요"></input>
+        <AiOutlineSearch className="searchIcon"></AiOutlineSearch>
       </S.SearchCon>
+      {close === true ? <Popup /> : null}
       <p>EDUCATION PROGRAM LIST</p>
       <S.LectureCon>
         <S.LectureList>
+          <Lecture></Lecture>
+          <Lecture></Lecture>
           <Lecture></Lecture>
           <Lecture></Lecture>
           <Lecture></Lecture>
