@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  border-radius : 20px;
+  border-radius: 20px;
   width: 60%;
   height: 60%;
   background-color: white;
@@ -30,7 +30,7 @@ export const Title = styled.div`
   height: 10%;
   text-align: center;
   line-height: 20%;
-  font-size: 38px;
+  font-size: 200%;
   background-color: black;
   color: white;
   display: flex;
@@ -49,15 +49,17 @@ export const Cate = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(25%, auto));
   gap: none;
   width: 100%;
-  font-size: 28px;
-  > div {
-    background: #f8f8f8;
-    border-left: 1px solid #e5e5e5;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #999;
-    text-align: center;
-  }
+  font-size: 170%;
+  white-space: nowrap;
+`;
+
+export const CateList = styled.div`
+  background: ${(props) => props.bgcolor};
+  border: 1px solid #e5e5e5;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${(props) => props.color};
+  text-align: center;
 `;

@@ -10,6 +10,10 @@ export const closeState = atom({
   key: "close",
   default: false,
 });
+export const Category = atom({
+  key: "category",
+  default: [[], [], []],
+});
 function App() {
   return (
     <>

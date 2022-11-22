@@ -26,15 +26,15 @@ export const Wrapper = styled.div`
 `;
 export const SearchCon = styled.div`
   width: 100%;
-  height: 100px;
+  height: 80px;
   margin-top: 75px;
   display: flex;
   justify-content: center;
   align-items: center;
   > input {
-    font-size: 42px;
-    width: 50%;
-    height: 100px;
+    font-size: 22px;
+    width: 40%;
+    height: 80px;
   }
   .searchIcon{
     width : auto;
