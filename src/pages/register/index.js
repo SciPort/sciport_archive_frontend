@@ -43,7 +43,7 @@ const Index = () => {
           <input
             onChange={(e) => {
               setRegisterData({ ...registerData, nickname: e.target.value });
-              console.log(registerData.id);
+              console.log(registerData.nickname);
             }}
             placeholder="아이디"
             type="text"
