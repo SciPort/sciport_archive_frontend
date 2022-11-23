@@ -35,7 +35,6 @@ export default function Main() {
           .catch((err) => {});
       });
   }, []);
-  console.log(user);
   return (
     <S.Wrapper>
       <S.SearchCon>
