@@ -1,16 +1,18 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useRecoilState } from "recoil";
-import { Category, closeState } from "../../App";
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
+import { Category1, Category2, Category3, closeState } from "../../App";
 import * as S from "./style";
 export default function Popup() {
   window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
   document.body.style.overflow = "hidden";
-  const [close, setClose] = useRecoilState(closeState);
+  const setClose = useSetRecoilState(closeState);
   const [check, setCheck] = useState(new Set());
-  const [bool, setBool] = useState(true);
-  let [cate, setCate] = useRecoilState(Category);
+  const [cate1, setCate1] = useRecoilState(Category1);
+  const [cate2, setCate2] = useRecoilState(Category2);
+  const [cate3, setCate3] = useRecoilState(Category3);
+
   const list = [
     ["개인교육", "단체교육", "성인교육"],
     [
@@ -31,8 +33,7 @@ export default function Popup() {
       "후원회교육",
     ],
   ];
-
-  let CateDiv = list.map((temp, idx1) => {
+  const CateDiv = list.map((temp, idx1) => {
     return (
       <S.Cate>
         {temp.map((data, idx2) => (
@@ -45,18 +46,23 @@ export default function Popup() {
                 ? "#808080"
                 : "#f8f8f8"
             }
-            value={data}
             onClick={() => {
               check.has(idx1.toString() + idx2.toString())
-                ? (cate = cate.filter((data) => data != list[idx1][idx2]))
-                : cate.push(list[idx1][idx2]);
+                ? idx1 === 0
+                  ? setCate1(cate1?.filter((data) => data != list[idx1][idx2]))
+                  : idx1 === 1
+                  ? setCate2(cate2?.filter((data) => data != list[idx1][idx2]))
+                  : setCate3(cate3?.filter((data) => data != list[idx1][idx2]))
+                : idx1 === 0
+                ? setCate1(cate1?.concat(list[idx1][idx2]))
+                : idx1 === 1
+                ? setCate2(cate2?.concat(list[idx1][idx2]))
+                : setCate3(cate3?.concat(list[idx1][idx2]));
 
               check.has(idx1.toString() + idx2.toString())
                 ? check.delete(idx1.toString() + idx2.toString())
                 : check.add(idx1.toString() + idx2.toString());
-              setCate(cate);
               setCheck(check);
-              setBool(!bool);
             }}
           >
             {data}
@@ -65,7 +71,6 @@ export default function Popup() {
       </S.Cate>
     );
   });
-  console.log(typeof(cate[1]));
   return (
     <S.StyledPopup>
       <S.Wrapper>

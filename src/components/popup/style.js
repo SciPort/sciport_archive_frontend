@@ -49,7 +49,7 @@ export const Cate = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(25%, auto));
   gap: none;
   width: 100%;
-  font-size: 170%;
+  font-size: 1.5vw;
   white-space: nowrap;
 `;
 

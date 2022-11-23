@@ -10,8 +10,20 @@ export const closeState = atom({
   key: "close",
   default: false,
 });
-export const Category = atom({
-  key: "category",
+export const Category1 = atom({
+  key: "category1",
+  default: [],
+});
+export const Category2 = atom({
+  key: "category2",
+  default: [],
+});
+export const Category3 = atom({
+  key: "category3",
+  default: [],
+});
+export const Test = atom({
+  key: "test",
   default: [[], [], []],
 });
 function App() {
