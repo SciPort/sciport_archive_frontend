@@ -1,16 +1,37 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { atom, useRecoilState } from "recoil";
+import { atom, useRecoilState, useRecoilValue } from "recoil";
 import Lecture from "../../components/lecture";
 import { userState } from "../../components/states";
 import * as S from "./style";
 import { AiOutlineSearch, AiOutlineArrowDown } from "react-icons/ai";
 import Popup from "../../components/popup";
-import { closeState } from "../../App";
+import { Category1, Category2, Category3, closeState } from "../../App";
 export default function Main() {
   document.body.style.overflow = "unset";
   const [user, setUser] = useRecoilState(userState);
   const [close, setClose] = useRecoilState(closeState);
+  const [title, setTitle] = useState("");
+  const cate1 = useRecoilValue(Category1);
+  const cate2 = useRecoilValue(Category2);
+  const cate3 = useRecoilValue(Category3);
+
+  function sub() {
+    const form = {
+      educations: cate1,
+      terms: cate2,
+      lessons: cate3,
+      name: title,
+    };
+    axios
+      .post("http://192.168.10.128:8080/gebByCate", form)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   useEffect(() => {
     const form = { accessToken: localStorage.getItem("accessToken") };
     axios
@@ -42,8 +63,12 @@ export default function Main() {
           카테고리
           <AiOutlineArrowDown />
         </S.Cate>
-        <input type="search" placeholder="검색어를 입력하세요"></input>
-        <AiOutlineSearch className="searchIcon"></AiOutlineSearch>
+        <input type="text" placeholder="검색어를 입력하세요"></input>
+        <AiOutlineSearch
+          className="searchIcon"
+          onClick={sub}
+          onChange={(e) => setTitle(e.target.value)}
+        ></AiOutlineSearch>
       </S.SearchCon>
       {close === true ? <Popup /> : null}
       <p>EDUCATION PROGRAM LIST</p>

@@ -34,7 +34,7 @@ export const SearchCon = styled.div`
   > input {
     font-size: 22px;
     width: 40%;
-    height: 80px;
+    height: 90%;
   }
   .searchIcon{
     width : auto;

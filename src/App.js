@@ -22,10 +22,11 @@ export const Category3 = atom({
   key: "category3",
   default: [],
 });
-export const Test = atom({
-  key: "test",
-  default: [[], [], []],
+export const SetState = atom({
+  key: "set",
+  default: new Set(),
 });
+
 function App() {
   return (
     <>
