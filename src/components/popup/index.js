@@ -2,13 +2,13 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
-import { Category1, Category2, Category3, closeState } from "../../App";
+import { Category1, Category2, Category3, closeState, SetState } from "../../App";
 import * as S from "./style";
 export default function Popup() {
   window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
   document.body.style.overflow = "hidden";
   const setClose = useSetRecoilState(closeState);
-  const [check, setCheck] = useState(new Set());
+  const [check, setCheck] = useRecoilState(SetState);
   const [cate1, setCate1] = useRecoilState(Category1);
   const [cate2, setCate2] = useRecoilState(Category2);
   const [cate3, setCate3] = useRecoilState(Category3);
