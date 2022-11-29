@@ -17,14 +17,27 @@ const Header = () => {
         <br></br>ARCHIVE
       </S.Title>
       <S.Login>
-        <Link to={"/register"}>
-          <AiOutlineUserAdd size="34"></AiOutlineUserAdd>
-          <span>Sign up</span>
-        </Link>
-        <Link to={"/login"}>
-          <AiFillLock size="34"></AiFillLock>
-          <span>login</span>
-        </Link>
+        {localStorage.getItem("accessToken") ? (
+          <span
+            onClick={() => {
+              localStorage.removeItem("accessToken");
+              window.location.href = "/";
+            }}
+          >
+            로그아웃
+          </span>
+        ) : (
+          <>
+            <Link to={"/register"}>
+              <AiOutlineUserAdd size="34"></AiOutlineUserAdd>
+              <span>Sign up</span>
+            </Link>
+            <Link to={"/login"}>
+              <AiFillLock size="34"></AiFillLock>
+              <span>login</span>
+            </Link>
+          </>
+        )}
       </S.Login>
     </S.Head>
   );

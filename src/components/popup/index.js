@@ -75,7 +75,7 @@ export default function Popup() {
     <S.StyledPopup>
       <S.Wrapper>
         <S.Title>
-          <h1>카테고리 검색</h1> <span onClick={() => setClose(false)}>X</span>
+          <h1>카테고리 검색</h1> <span onClick={() => setClose(false)}>선택 완료</span>
         </S.Title>
         <h2>강좌 카테고리를 선택해 주세요</h2>
         {CateDiv}
