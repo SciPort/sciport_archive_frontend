@@ -23,6 +23,7 @@ export default function Main() {
       lessons: cate3,
       name: title,
     };
+    console.log(form);
     axios
       .post("http://192.168.10.128:8080/getByCate", form)
       .then((res) => {
@@ -63,12 +64,12 @@ export default function Main() {
           카테고리
           <AiOutlineArrowDown />
         </S.Cate>
-        <input type="text" placeholder="검색어를 입력하세요"></input>
-        <AiOutlineSearch
-          className="searchIcon"
-          onClick={sub}
+        <input
+          type="text"
+          placeholder="검색어를 입력하세요"
           onChange={(e) => setTitle(e.target.value)}
-        ></AiOutlineSearch>
+        ></input>
+        <AiOutlineSearch className="searchIcon" onClick={sub}></AiOutlineSearch>
       </S.SearchCon>
       {close === true ? <Popup /> : null}
       <p>EDUCATION PROGRAM LIST</p>
