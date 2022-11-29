@@ -24,7 +24,7 @@ export default function Main() {
       name: title,
     };
     axios
-      .post("http://192.168.10.128:8080/gebByCate", form)
+      .post("http://192.168.10.128:8080/getByCate", form)
       .then((res) => {
         console.log(res.data);
       })

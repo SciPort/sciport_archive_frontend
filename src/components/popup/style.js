@@ -39,7 +39,7 @@ export const Title = styled.div`
   align-items: center;
   > span {
     position: absolute;
-    margin-left: 90%;
+    margin-left: 80%;
   }
 `;
 
