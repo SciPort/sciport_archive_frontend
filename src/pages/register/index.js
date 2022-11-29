@@ -4,7 +4,7 @@ import * as S from "./style";
 
 const Index = () => {
   const [registerData, setRegisterData] = useState({
-    name: "",
+    id: "",
     nickname: "",
     password: "",
     passwordCheck: "",
@@ -34,10 +34,10 @@ const Index = () => {
         <S.RegisterForm onSubmit={RegisterFunc}>
           <input
             onChange={(e) => {
-              setRegisterData({ ...registerData, name: e.target.value });
+              setRegisterData({ ...registerData, id: e.target.value });
               console.log(registerData.name);
             }}
-            placeholder="이름"
+            placeholder="아이디"
             type="text"
           />
           <input
@@ -45,7 +45,7 @@ const Index = () => {
               setRegisterData({ ...registerData, nickname: e.target.value });
               console.log(registerData.nickname);
             }}
-            placeholder="아이디"
+            placeholder="이름"
             type="text"
           />
           <input

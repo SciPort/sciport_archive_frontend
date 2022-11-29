@@ -73,6 +73,18 @@ export default function Main() {
       </S.SearchCon>
       {close === true ? <Popup /> : null}
       <p>EDUCATION PROGRAM LIST</p>
+      <S.AddBtn
+        onClick={() => {
+          if (localStorage.getItem("accessToken")) {
+            window.location.replace("/createLec");
+          } else {
+            alert("강좌 개설을 하려면 로그인부터 해야합니다!");
+            window.location.replace("/login");
+          }
+        }}
+      >
+        강좌 개설
+      </S.AddBtn>
       <S.LectureCon>
         <S.LectureList>
           <Lecture></Lecture>
