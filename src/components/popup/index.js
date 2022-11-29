@@ -1,8 +1,15 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import {AiOutlineCheck} from "react-icons/ai"
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from "recoil";
-import { Category1, Category2, Category3, closeState, SetState } from "../../App";
+import {
+  Category1,
+  Category2,
+  Category3,
+  closeState,
+  SetState,
+} from "../../App";
 import * as S from "./style";
 export default function Popup() {
   window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
@@ -39,7 +46,7 @@ export default function Popup() {
         {temp.map((data, idx2) => (
           <S.CateList
             color={
-              check.has(idx1.toString() + idx2.toString()) ? "white" : "#999"
+              check.has(idx1.toString() + idx2.toString()) ? "white" : "#000000"
             }
             bgcolor={
               check.has(idx1.toString() + idx2.toString())
@@ -75,10 +82,11 @@ export default function Popup() {
     <S.StyledPopup>
       <S.Wrapper>
         <S.Title>
-          <h1>카테고리 검색</h1> <span onClick={() => setClose(false)}>선택 완료</span>
+          <h1>카테고리 검색</h1>
         </S.Title>
         <h2>강좌 카테고리를 선택해 주세요</h2>
         {CateDiv}
+        <S.Btn onClick={() => setClose(false)}><AiOutlineCheck/>선택 완료</S.Btn>
       </S.Wrapper>
     </S.StyledPopup>
   );
