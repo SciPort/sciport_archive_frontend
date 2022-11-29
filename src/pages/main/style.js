@@ -16,6 +16,9 @@ export const Cate = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
   width: 100%;
   height: 100%;
   > p {
@@ -23,6 +26,16 @@ export const Wrapper = styled.div`
     font-weight: bold;
     text-align: center;
   }
+`;
+export const AddBtn = styled.div`
+  margin: 0 auto;
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 20px;
+  background-color: lightgrey;
+  margin-bottom: 3%;
 `;
 export const SearchCon = styled.div`
   width: 100%;
@@ -36,9 +49,9 @@ export const SearchCon = styled.div`
     width: 40%;
     height: 90%;
   }
-  .searchIcon{
-    width : auto;
-    height : 80%;
+  .searchIcon {
+    width: auto;
+    height: 80%;
   }
 `;
 export const LectureCon = styled.div`
