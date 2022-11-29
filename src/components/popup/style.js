@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   border-radius: 20px;
   width: 60%;
-  height: 60%;
+  height: 70%;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -37,10 +37,6 @@ export const Title = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  > span {
-    position: absolute;
-    margin-left: 80%;
-  }
 `;
 
 export const Cate = styled.div`
@@ -62,4 +58,15 @@ export const CateList = styled.div`
   justify-content: center;
   color: ${(props) => props.color};
   text-align: center;
+`;
+
+export const Btn = styled.button`
+  width: 20vw;
+  height: 6vh;
+  margin-top: 2%;
+  border-radius : 10px;
+  font-size : 125%;
+  border : 1px solid #59d3ff;
+  background-color : white;
+  color : #59d3ff;
 `;
