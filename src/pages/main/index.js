@@ -4,100 +4,115 @@ import { atom, useRecoilState, useRecoilValue } from "recoil";
 import Lecture from "../../components/lecture";
 import { userState } from "../../components/states";
 import * as S from "./style";
-import { AiOutlineSearch, AiOutlineArrowDown } from "react-icons/ai";
+import {
+  AiOutlineSearch,
+  AiOutlineArrowDown,
+  AiOutlineHome,
+} from "react-icons/ai";
+import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
 import Popup from "../../components/popup";
-import { Category1, Category2, Category3, closeState } from "../../App";
+import {
+  Category1,
+  Category2,
+  Category3,
+  closeState,
+  SetState,
+} from "../../App";
+import { Layout } from "../../components/popup/style";
 export default function Main() {
-  document.body.style.overflow = "unset";
-  const [user, setUser] = useRecoilState(userState);
-  const [close, setClose] = useRecoilState(closeState);
-  const [title, setTitle] = useState("");
-  const cate1 = useRecoilValue(Category1);
-  const cate2 = useRecoilValue(Category2);
-  const cate3 = useRecoilValue(Category3);
+  const [check, setCheck] = useRecoilState(SetState);
+  const [bool, setBool] = useState(true);
+  const [cate1, setCate1] = useRecoilState(Category1);
+  const [cate2, setCate2] = useRecoilState(Category2);
+  const [cate3, setCate3] = useRecoilState(Category3);
+  const list = [
+    ["개인교육", "단체교육", "성인교육"],
+    [
+      "겨울학기",
+      "봄학기(1)",
+      "봄학기(2)",
+      "여름학기",
+      "가을학기(1)",
+      "가을학기(2)",
+    ],
+    [
+      "유아과학교실",
+      "창의탐구교실",
+      "실험탐구교실",
+      "SW코딩교실",
+      "창작메이커교실",
+      "프로젝트교실",
+      "후원회교육",
+    ],
+  ];
+  const title = ["교육", "학기", "교실"];
+  const Drops = list.map((data1, idx1) => (
+    <S.CateWrapper>
+      <S.Cate>
+        <span>{title[idx1]}</span>
+        <BsArrowDownShort className="icon" />
+      </S.Cate>
+      <div className="dropdown">
+        {data1.map((data, idx2) => (
+          <S.DropItem
+            color={
+              check.has(idx1.toString() + idx2.toString()) ? "white" : "#000000"
+            }
+            bgcolor={
+              check.has(idx1.toString() + idx2.toString())
+                ? "#0c2136"
+                : "#ffffff"
+            }
+            onClick={() => {
+              check.has(idx1.toString() + idx2.toString())
+                ? idx1 === 0
+                  ? setCate1(cate1?.filter((data) => data != list[idx1][idx2]))
+                  : idx1 === 1
+                  ? setCate2(cate2?.filter((data) => data != list[idx1][idx2]))
+                  : setCate3(cate3?.filter((data) => data != list[idx1][idx2]))
+                : idx1 === 0
+                ? setCate1(cate1?.concat(list[idx1][idx2]))
+                : idx1 === 1
+                ? setCate2(cate2?.concat(list[idx1][idx2]))
+                : setCate3(cate3?.concat(list[idx1][idx2]));
 
-  function sub() {
-    const form = {
-      educations: cate1,
-      terms: cate2,
-      lessons: cate3,
-      name: title,
-    };
-    console.log(form);
-    axios
-      .post("http://192.168.10.128:8080/getByCate", form)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-  useEffect(() => {
-    const form = { accessToken: localStorage.getItem("accessToken") };
-    axios
-      .post("http://192.168.10.128:8080/user/auth", form)
-      .then((res) => {
-        setUser(res.data);
-      })
-      .catch((err) => {
-        const rf = { refreshToken: localStorage.getItem("refreshToken") };
-        axios
-          .post("http://192.168.10.128:8080/user/reissue", rf)
-          .then((res) => {
-            localStorage.setItem("accessToken", res.data.accessToken);
-            localStorage.setItem("refreshToken", res.data.refreshToken);
-            axios
-              .post("http://192.168.10.128:8080/user/auth", form)
-              .then((res) => {
-                setUser(res.data);
-              })
-              .catch((err) => {});
-          })
-          .catch((err) => {});
-      });
-  }, []);
+              check.has(idx1.toString() + idx2.toString())
+                ? check.delete(idx1.toString() + idx2.toString())
+                : check.add(idx1.toString() + idx2.toString());
+              setCheck(check);
+            }}
+          >
+            {data}
+          </S.DropItem>
+        ))}
+      </div>
+    </S.CateWrapper>
+  ));
+  console.log(check);
   return (
-    <S.Wrapper>
-      <S.SearchCon>
-        <S.Cate onClick={() => setClose(true)}>
-          카테고리
-          <AiOutlineArrowDown />
-        </S.Cate>
-        <input
-          type="text"
-          placeholder="검색어를 입력하세요"
-          onChange={(e) => setTitle(e.target.value)}
-        ></input>
-        <AiOutlineSearch className="searchIcon" onClick={sub}></AiOutlineSearch>
-      </S.SearchCon>
-      {close === true ? <Popup /> : null}
-      <p>EDUCATION PROGRAM LIST</p>
-      <S.AddBtn
-        onClick={() => {
-          if (localStorage.getItem("accessToken")) {
-            window.location.replace("/createLec");
-          } else {
-            alert("강좌 개설을 하려면 로그인부터 해야합니다!");
-            window.location.replace("/login");
-          }
-        }}
-      >
-        강좌 개설
-      </S.AddBtn>
-      <S.LectureCon>
-        <S.LectureList>
-          <Lecture></Lecture>
-          <Lecture></Lecture>
-          <Lecture></Lecture>
-          <Lecture></Lecture>
-          <Lecture></Lecture>
-          <Lecture></Lecture>
-          <Lecture></Lecture>
-          <Lecture></Lecture>
-          <Lecture></Lecture>
-        </S.LectureList>
-      </S.LectureCon>
-    </S.Wrapper>
+    <S.Layout>
+      <S.ImgWrapper>
+        <S.Img src="https://www.sciport.or.kr/homepage/kor/_Img/Layout/svisual_MN035.jpg" />
+        <S.Text>교육</S.Text>
+      </S.ImgWrapper>
+      <S.SearchWrapper>
+        <S.SearchBar>
+          <S.Home
+            onClick={() => {
+              check.clear();
+              setCheck(check);
+              setBool(!bool);
+            }}
+          >
+            <AiOutlineHome className="icon" />
+          </S.Home>
+          {Drops}
+          <S.Input />
+          <S.Search>
+            <AiOutlineSearch className="icon" />
+          </S.Search>
+        </S.SearchBar>
+      </S.SearchWrapper>
+    </S.Layout>
   );
 }
