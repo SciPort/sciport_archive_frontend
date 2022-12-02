@@ -23,6 +23,7 @@ export const ImgWrapper = styled.div`
   flex-direction: row;
 `;
 export const SearchWrapper = styled.div`
+  background-color: white;
   width: 100%;
   height: 100%;
   display: flex;
@@ -122,7 +123,9 @@ export const DropItem = styled.div`
   height: 6vh;
   display: flex;
   align-items: center;
-  border: 1px solid black;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+  border-left: 1px solid;
   &:hover {
     background-color: ${(props) =>
       props.bgcolor == "#0c2136" ? props.bgcolor : "#1876d7;"};
@@ -132,11 +135,27 @@ export const DropItem = styled.div`
   &:not(:hover) {
     transition: all 0.2s ease;
   }
+  > span {
+    font-size : 1vw;
+    margin-left: 1vh;
+  }
+  >.icon{
+    position : absolute;
+    margin-left : 10vw; 
+  }
 `;
 export const CateWrapper = styled.div`
   width: 15%;
   height: 100%;
   transform-origin: top center;
+  &:hover {
+    background-color: #1876d7;
+    transition: all 0.2s ease;
+  }
+  &:not(:hover) {
+    background-color: #0c2136;
+    transition: all 0.2s ease;
+  }
   .dropdown {
     display: none;
   }
@@ -146,7 +165,7 @@ export const CateWrapper = styled.div`
     animation: ${growDown} 300ms linear forwards;
     transform-origin: top center;
   }
-  &:not(:hover) >.dropdown{
+  &:not(:hover) > .dropdown {
     animation: ${growDown} 300ms linear forwards;
     transform-origin: top center;
   }
