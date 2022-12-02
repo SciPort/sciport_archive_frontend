@@ -8,6 +8,7 @@ import {
   AiOutlineSearch,
   AiOutlineArrowDown,
   AiOutlineHome,
+  AiOutlineCheck,
 } from "react-icons/ai";
 import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
 import Popup from "../../components/popup";
@@ -82,7 +83,10 @@ export default function Main() {
               setCheck(check);
             }}
           >
-            {data}
+            <span>{data}</span>
+            {check.has(idx1.toString() + idx2.toString()) ? (
+              <AiOutlineCheck className="icon" />
+            ) : null}
           </S.DropItem>
         ))}
       </div>
