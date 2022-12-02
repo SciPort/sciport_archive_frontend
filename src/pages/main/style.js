@@ -13,6 +13,8 @@ export const growDown = keyframes`
 `;
 
 export const Layout = styled.div`
+  position : absolute;
+  top : 0px;
   width: 100%;
   height: 100%;
 `;
@@ -33,7 +35,7 @@ export const SearchWrapper = styled.div`
 `;
 export const SearchBar = styled.div`
   width: 80%;
-  height: 10%;
+  height: 9vh;
   background-color: #0c2136;
   z-index: 4;
   display: flex;
@@ -46,7 +48,7 @@ export const Img = styled.img`
 `;
 
 export const Text = styled.span`
-  margin-top: 7%;
+  margin-top: 10%;
   position: absolute;
   z-index: 2;
   width: 100%;
@@ -120,7 +122,7 @@ export const DropItem = styled.div`
   background-color: ${(props) => props.bgcolor};
   color: ${(props) => props.color};
   width: 100%;
-  height: 6vh;
+  height: 5.5vh;
   display: flex;
   align-items: center;
   border-bottom: 1px solid;
@@ -136,12 +138,12 @@ export const DropItem = styled.div`
     transition: all 0.2s ease;
   }
   > span {
-    font-size : 1vw;
+    font-size: 1vw;
     margin-left: 1vh;
   }
-  >.icon{
-    position : absolute;
-    margin-left : 10vw; 
+  > .icon {
+    position: absolute;
+    margin-left: 10vw;
   }
 `;
 export const CateWrapper = styled.div`
