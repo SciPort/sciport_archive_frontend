@@ -1,5 +1,17 @@
 import styled, { keyframes } from "styled-components";
 
+export const growDown = keyframes`
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+`;
+
 export const Layout = styled.div`
   width: 100%;
   height: 100%;
@@ -131,5 +143,11 @@ export const CateWrapper = styled.div`
   &:hover > .dropdown {
     display: flex;
     flex-direction: column;
+    animation: ${growDown} 300ms linear forwards;
+    transform-origin: top center;
+  }
+  &:not(:hover) >.dropdown{
+    animation: ${growDown} 300ms linear forwards;
+    transform-origin: top center;
   }
 `;
