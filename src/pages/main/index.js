@@ -11,15 +11,12 @@ import {
   AiOutlineCheck,
 } from "react-icons/ai";
 import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
-import Popup from "../../components/popup";
 import {
   Category1,
   Category2,
   Category3,
-  closeState,
   SetState,
 } from "../../App";
-import { Layout } from "../../components/popup/style";
 export default function Main() {
   const [check, setCheck] = useRecoilState(SetState);
   const [bool, setBool] = useState(true);
