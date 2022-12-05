@@ -8,17 +8,15 @@ import {
   AiOutlineSearch,
   AiOutlineArrowDown,
   AiOutlineHome,
+  AiOutlineCheck,
 } from "react-icons/ai";
 import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
-import Popup from "../../components/popup";
 import {
   Category1,
   Category2,
   Category3,
-  closeState,
   SetState,
 } from "../../App";
-import { Layout } from "../../components/popup/style";
 export default function Main() {
   const [check, setCheck] = useRecoilState(SetState);
   const [bool, setBool] = useState(true);
@@ -82,7 +80,10 @@ export default function Main() {
               setCheck(check);
             }}
           >
-            {data}
+            <span>{data}</span>
+            {check.has(idx1.toString() + idx2.toString()) ? (
+              <AiOutlineCheck className="icon" />
+            ) : null}
           </S.DropItem>
         ))}
       </div>

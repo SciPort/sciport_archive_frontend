@@ -1,6 +1,20 @@
 import styled, { keyframes } from "styled-components";
 
+export const growDown = keyframes`
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+`;
+
 export const Layout = styled.div`
+  position : absolute;
+  top : 0px;
   width: 100%;
   height: 100%;
 `;
@@ -11,6 +25,7 @@ export const ImgWrapper = styled.div`
   flex-direction: row;
 `;
 export const SearchWrapper = styled.div`
+  background-color: white;
   width: 100%;
   height: 100%;
   display: flex;
@@ -20,7 +35,7 @@ export const SearchWrapper = styled.div`
 `;
 export const SearchBar = styled.div`
   width: 80%;
-  height: 10%;
+  height: 9vh;
   background-color: #0c2136;
   z-index: 4;
   display: flex;
@@ -33,7 +48,7 @@ export const Img = styled.img`
 `;
 
 export const Text = styled.span`
-  margin-top: 7%;
+  margin-top: 10%;
   position: absolute;
   z-index: 2;
   width: 100%;
@@ -107,10 +122,12 @@ export const DropItem = styled.div`
   background-color: ${(props) => props.bgcolor};
   color: ${(props) => props.color};
   width: 100%;
-  height: 6vh;
+  height: 5.5vh;
   display: flex;
   align-items: center;
-  border: 1px solid black;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+  border-left: 1px solid;
   &:hover {
     background-color: ${(props) =>
       props.bgcolor == "#0c2136" ? props.bgcolor : "#1876d7;"};
@@ -120,16 +137,38 @@ export const DropItem = styled.div`
   &:not(:hover) {
     transition: all 0.2s ease;
   }
+  > span {
+    font-size: 1vw;
+    margin-left: 1vh;
+  }
+  > .icon {
+    position: absolute;
+    margin-left: 10vw;
+  }
 `;
 export const CateWrapper = styled.div`
   width: 15%;
   height: 100%;
   transform-origin: top center;
+  &:hover {
+    background-color: #1876d7;
+    transition: all 0.2s ease;
+  }
+  &:not(:hover) {
+    background-color: #0c2136;
+    transition: all 0.2s ease;
+  }
   .dropdown {
     display: none;
   }
   &:hover > .dropdown {
     display: flex;
     flex-direction: column;
+    animation: ${growDown} 300ms linear forwards;
+    transform-origin: top center;
+  }
+  &:not(:hover) > .dropdown {
+    animation: ${growDown} 300ms linear forwards;
+    transform-origin: top center;
   }
 `;
