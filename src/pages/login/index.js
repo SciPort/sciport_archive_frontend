@@ -9,7 +9,6 @@ const Index = () => {
   });
   const LoginFunc = (e) => {
     e.preventDefault();
-    console.log("로그인 버튼 눌림");
     if (!loginData.name) {
       return alert("아이디를 입력해주세요.");
     } else if (!loginData.password) {

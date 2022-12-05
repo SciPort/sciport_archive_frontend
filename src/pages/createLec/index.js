@@ -17,39 +17,21 @@ const index = () => {
             height={"70px"}
             fontSize={"30px"}
           ></S.Input>
-        </S.ContentBox>
-        <S.ContentBox>
-          <S.Input
-            placeholder="강사 이름"
-            height={"60px"}
-            fontSize={"25px"}
-          ></S.Input>
-          <S.Input
-            as={"textarea"}
-            placeholder="강사 소개"
-            height={"300px"}
-            fontSize={"22px"}
-          ></S.Input>
-        </S.ContentBox>
-        <S.ContentBox>
+          <S.Input as={"select"}></S.Input>
           <S.Input
             placeholder="프로그램 설명"
             as={"textarea"}
             height={"300px"}
             fontSize={"22px"}
           ></S.Input>
-          <S.Input
-            placeholder="준비물"
-            as={"textarea"}
-            height={"200px"}
-            fontSize={"22px"}
-          ></S.Input>
-          <S.Input
-            placeholder="유의사항, 프로그램을 진행할 때 주의해야할 사항을 적어주세요."
-            as={"textarea"}
-            height={"300px"}
-            fontSize={"22px"}
-          ></S.Input>
+          <S.Input as={"div"}>
+            <S.Label htmlFor="Poster">포스터 이미지파일</S.Label>
+            <S.Input
+              id="Poster"
+              type={"file"}
+              accept={[".png", ".jpeg", ".jpg", ".svg"]}
+            />
+          </S.Input>
         </S.ContentBox>
         <S.Submit>완료</S.Submit>
       </div>

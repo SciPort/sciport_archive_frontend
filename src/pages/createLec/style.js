@@ -57,6 +57,7 @@ export const Input = styled.input`
     outline: none;
   }
 `;
+export const Label = styled.label``;
 export const Submit = styled.div`
   width: 20%;
   height: 3%;
