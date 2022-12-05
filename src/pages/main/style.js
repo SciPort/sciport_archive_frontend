@@ -13,38 +13,29 @@ export const growDown = keyframes`
 `;
 
 export const Layout = styled.div`
-  position : absolute;
-  top : 0px;
-  width: 100%;
-  height: 100%;
-`;
-export const ImgWrapper = styled.div`
-  width: 100%;
-  height: 50%;
-  display: flex;
-  flex-direction: row;
-`;
-export const SearchWrapper = styled.div`
-  background-color: white;
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: -4vh;
+  flex-direction: column;
+  align-items: center;
+`;
+export const CateLayout = styled.div`
+  width: 50%;
+  height: 100%;
+  display: flex;
 `;
 export const SearchBar = styled.div`
   width: 80%;
-  height: 9vh;
+  display : flex;
+  flex-direction : row;
+  height : 10%;
   background-color: #0c2136;
-  z-index: 4;
-  display: flex;
-  flex-direction: row;
+  margin-top: -4vh;
 `;
 
 export const Img = styled.img`
   width: 100%;
-  height: 100%;
+  height: auto;
 `;
 
 export const Text = styled.span`
@@ -56,9 +47,8 @@ export const Text = styled.span`
   color: white;
   font-size: 2.5vw;
 `;
-
 export const Home = styled.div`
-  width: 6%;
+  width: 40%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -79,45 +69,34 @@ export const Cate = styled.div`
   color: white;
   display: flex;
   align-items: center;
-  &:hover > .icon {
+  justify-content: space-between;
+  &:hover > div .icon {
     transform: rotate(180deg);
     transition: all 0.3s ease;
   }
-  &:not(:hover) > .icon {
+  &:not(:hover) > div .icon {
     transition: all 0.3s ease;
   }
   > span {
-    margin-left: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 100%;
+    font-size: 2vh;
   }
-  > .icon {
-    position: absolute;
-    height: 5%;
-    width: 5%;
-    margin-left: 8%;
-  }
-`;
-
-export const Input = styled.input`
-  height: auto;
-  width: 42%;
-  &:focus {
-    outline: none;
-  }
-  font-size: 3vh;
-`;
-export const Search = styled.div`
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 6%;
-  > .icon {
-    color: white;
-    width: 80%;
-    height: 80%;
+  > div {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
-
+export const InputLayout = styled.div`
+  height: 100%;
+  width: 50%;
+`;
 export const DropItem = styled.div`
   background-color: ${(props) => props.bgcolor};
   color: ${(props) => props.color};
@@ -147,7 +126,7 @@ export const DropItem = styled.div`
   }
 `;
 export const CateWrapper = styled.div`
-  width: 15%;
+  width: 100%;
   height: 100%;
   transform-origin: top center;
   &:hover {
@@ -171,4 +150,28 @@ export const CateWrapper = styled.div`
     animation: ${growDown} 300ms linear forwards;
     transform-origin: top center;
   }
+`;
+
+export const LectureLayout = styled.div`
+  height: 100%;
+  width: 80%;
+  background-color: lightblue;
+  margin-top: 5%;
+  display: block;
+  > span {
+    font-size: 3vw;
+    font-weight: bold;
+  }
+`;
+export const LectureList = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(33%, auto));
+  grid-gap: 10px;
+  background-color: bisque;
+`;
+export const LectureItem = styled.div`
+  width: 100%;
+  height: 100px;
+  background-color: aliceblue;
 `;
