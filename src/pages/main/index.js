@@ -11,18 +11,14 @@ import {
   AiOutlineCheck,
 } from "react-icons/ai";
 import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
-import {
-  Category1,
-  Category2,
-  Category3,
-  SetState,
-} from "../../App";
+import { Category1, Category2, Category3, SetState } from "../../App";
 export default function Main() {
   const [check, setCheck] = useRecoilState(SetState);
   const [bool, setBool] = useState(true);
   const [cate1, setCate1] = useRecoilState(Category1);
   const [cate2, setCate2] = useRecoilState(Category2);
   const [cate3, setCate3] = useRecoilState(Category3);
+  const [inp, setInp] = useState("");
   const list = [
     ["개인교육", "단체교육", "성인교육"],
     [
@@ -32,23 +28,45 @@ export default function Main() {
       "여름학기",
       "가을학기(1)",
       "가을학기(2)",
+      "기타",
     ],
     [
       "유아과학교실",
       "창의탐구교실",
       "실험탐구교실",
-      "SW코딩교실",
+      "소프트웨어 코딩교실",
       "창작메이커교실",
-      "프로젝트교실",
-      "후원회교육",
+      "주제탐구교실",
+      "기타",
     ],
   ];
   const title = ["교육", "학기", "교실"];
+  function sub() {
+    const form = {
+      educations: cate1,
+      terms: cate2,
+      lessons: cate3,
+      name: inp,
+      page: 1,
+    };
+    console.log(form);
+    axios
+      .post("http://192.168.10.128:8080/lecture/getByCate", form)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   const Drops = list.map((data1, idx1) => (
     <S.CateWrapper>
       <S.Cate>
         <span>{title[idx1]}</span>
-        <BsArrowDownShort className="icon" />
+        <div>
+          {" "}
+          <BsArrowDownShort className="icon" size={"70%"} />
+        </div>
       </S.Cate>
       <div className="dropdown">
         {data1.map((data, idx2) => (
@@ -92,12 +110,10 @@ export default function Main() {
   console.log(check);
   return (
     <S.Layout>
-      <S.ImgWrapper>
-        <S.Img src="https://www.sciport.or.kr/homepage/kor/_Img/Layout/svisual_MN035.jpg" />
-        <S.Text>교육</S.Text>
-      </S.ImgWrapper>
-      <S.SearchWrapper>
-        <S.SearchBar>
+      <S.Img src="https://www.sciport.or.kr/homepage/kor/_Img/Layout/svisual_MN035.jpg" />
+      <S.Text>교육</S.Text>
+      <S.SearchBar>
+        <S.CateLayout>
           <S.Home
             onClick={() => {
               check.clear();
@@ -108,12 +124,30 @@ export default function Main() {
             <AiOutlineHome className="icon" />
           </S.Home>
           {Drops}
-          <S.Input />
-          <S.Search>
-            <AiOutlineSearch className="icon" />
-          </S.Search>
-        </S.SearchBar>
-      </S.SearchWrapper>
+        </S.CateLayout>
+        <S.InputLayout>HI</S.InputLayout>
+      </S.SearchBar>
+      <S.LectureLayout>
+        <span>프로그램 리스트</span>
+        <S.LectureList>
+          <S.LectureItem>HI</S.LectureItem>
+          <S.LectureItem>HI</S.LectureItem>
+          <S.LectureItem>HI</S.LectureItem>
+          <S.LectureItem>HI</S.LectureItem>
+          <S.LectureItem>HI</S.LectureItem>
+          <S.LectureItem>HI</S.LectureItem>
+          <S.LectureItem>HI</S.LectureItem>
+          <S.LectureItem>HI</S.LectureItem>
+          <S.LectureItem>HI</S.LectureItem>
+          <S.LectureItem>HI</S.LectureItem>
+
+          <S.LectureItem>HI</S.LectureItem>
+          <S.LectureItem>HI</S.LectureItem>
+          <S.LectureItem>HI</S.LectureItem>
+
+          <S.LectureItem>HI</S.LectureItem>
+        </S.LectureList>
+      </S.LectureLayout>
     </S.Layout>
   );
 }
