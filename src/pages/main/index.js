@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { atom, useRecoilState, useRecoilValue } from "recoil";
 import Lecture from "../../components/lecture";
 import { userState } from "../../components/states";
+import { list } from "../../assets/data/export";
 import * as S from "./style";
 import {
   AiOutlineSearch,
@@ -19,27 +20,7 @@ export default function Main() {
   const [cate2, setCate2] = useRecoilState(Category2);
   const [cate3, setCate3] = useRecoilState(Category3);
   const [inp, setInp] = useState("");
-  const list = [
-    ["개인교육", "단체교육", "성인교육"],
-    [
-      "겨울학기",
-      "봄학기(1)",
-      "봄학기(2)",
-      "여름학기",
-      "가을학기(1)",
-      "가을학기(2)",
-      "기타",
-    ],
-    [
-      "유아과학교실",
-      "창의탐구교실",
-      "실험탐구교실",
-      "소프트웨어 코딩교실",
-      "창작메이커교실",
-      "주제탐구교실",
-      "기타",
-    ],
-  ];
+
   const title = ["교육", "학기", "교실"];
   function sub() {
     const form = {
