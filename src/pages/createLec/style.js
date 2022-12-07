@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 260vh;
+  height: 130vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,14 +57,50 @@ export const Input = styled.input`
     outline: none;
   }
 `;
-export const Label = styled.label``;
+export const Label = styled.label`
+  width: 100%;
+  height: 20px;
+  /* background-color: lightgrey; */
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 5%;
+`;
 export const Submit = styled.div`
   width: 20%;
-  height: 3%;
+  height: 5%;
   background-color: #27386f;
   border-radius: 15px;
   text-align: center;
   font-size: 20px;
   color: white;
-  line-height: 270%;
+  line-height: 200%;
+`;
+export const FileBox = styled.div`
+  width: 90%;
+  height: 20%;
+  border-radius: 20px;
+  background-color: #f7fcff;
+  margin: 30px 20px;
+  padding-left: 1.5%;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+`;
+export const InBox = styled.div`
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  input {
+    /* text-align: center; */
+    background-color: #bae4fd;
+    border: 1.4px solid black;
+    border-radius: 10px;
+    padding: 20px;
+  }
 `;

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import * as S from "./style";
 import { MdOutlineArrowBack } from "react-icons/md";
+import { FileUploader } from "react-drag-drop-files";
+import { getByDisplayValue } from "@testing-library/react";
 
 const index = () => {
   // const [lectureInfo, setLectureInfo] = useState({
@@ -17,21 +19,22 @@ const index = () => {
             height={"70px"}
             fontSize={"30px"}
           ></S.Input>
-          <S.Input as={"select"}></S.Input>
           <S.Input
             placeholder="프로그램 설명"
             as={"textarea"}
             height={"300px"}
             fontSize={"22px"}
           ></S.Input>
-          <S.Input as={"div"}>
-            <S.Label htmlFor="Poster">포스터 이미지파일</S.Label>
-            <S.Input
-              id="Poster"
-              type={"file"}
-              accept={[".png", ".jpeg", ".jpg", ".svg"]}
-            />
-          </S.Input>
+          <S.FileBox>
+            <S.InBox>
+              <S.Label htmlFor="Poster">포스터 이미지파일</S.Label>
+              <input type="file" accept={[".png", ".jpeg", ".jpg", ".svg"]} />
+            </S.InBox>
+            <S.InBox>
+              <S.Label htmlFor="Attach">강의 첨부파일</S.Label>
+              <input type="file" />
+            </S.InBox>
+          </S.FileBox>
         </S.ContentBox>
         <S.Submit>완료</S.Submit>
       </div>
