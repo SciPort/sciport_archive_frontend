@@ -74,6 +74,7 @@ export const Submit = styled.div`
   font-size: 20px;
   color: white;
   line-height: 200%;
+  margin-bottom: 2%;
 `;
 export const FileBox = styled.div`
   width: 90%;
