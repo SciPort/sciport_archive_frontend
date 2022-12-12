@@ -85,9 +85,11 @@ const Index = () => {
     try {
       const response = await axios.post("url", lectureInfo);
       console.log(response);
+      alert("강의 생성 성공");
       window.location.href = "/";
     } catch (error) {
       console.log(error);
+      alert("강의 생성 실패");
     }
   };
   return (
@@ -158,7 +160,20 @@ const Index = () => {
           </S.InBox>
         </S.FileBox>
         {/* </S.ContentBox> */}
-        <S.Submit onClick={submitInfo}>완료</S.Submit>
+        <S.Submit
+          onClick={() => {
+            setLectureInfo({
+              ...lectureInfo,
+              cate1: cate1,
+              cate2: cate2,
+              cate3: cate3,
+            });
+            console.log(lectureInfo);
+            // submitInfo();
+          }}
+        >
+          완료
+        </S.Submit>
       </div>
     </S.Wrapper>
   );

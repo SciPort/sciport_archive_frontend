@@ -28,8 +28,8 @@ export const SearchBar = styled.div`
   width: 80%;
   display: flex;
   flex-direction: row;
-  /* height: 70px; */
-  height: 20%;
+  height: 70px;
+  /* height: 20%; */
   min-height: 10%;
   background-color: #0c2136;
   margin-top: -4vh;
