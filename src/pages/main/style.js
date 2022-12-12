@@ -67,6 +67,7 @@ export const Cate = styled.div`
   width: 100%;
   height: 100%;
   border-right: 1px solid rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
   font-size: 1vw;
   color: white;
   display: flex;
@@ -110,6 +111,7 @@ export const DropItem = styled.div`
   border-bottom: 1px solid;
   border-right: 1px solid;
   border-left: 1px solid;
+  box-sizing: border-box;
   &:hover {
     background-color: ${(props) =>
       props.bgcolor == "#0c2136" ? props.bgcolor : "#1876d7;"};
