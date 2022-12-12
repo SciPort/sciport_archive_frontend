@@ -10,6 +10,9 @@ import { BsArrowDownShort } from "react-icons/bs";
 
 const Index = () => {
   const [lectureInfo, setLectureInfo] = useState({
+    cate1: [],
+    cate2: [],
+    cate3: [],
     lecName: "",
     lecDescription: "",
     posterImage: [],
@@ -44,10 +47,10 @@ const Index = () => {
             onClick={() => {
               check.has(idx1.toString() + idx2.toString())
                 ? idx1 === 0
-                  ? setCate1(cate1?.filter((data) => data != list[idx1][idx2]))
+                  ? setCate1(cate1?.filter((data) => data !== list[idx1][idx2]))
                   : idx1 === 1
-                  ? setCate2(cate2?.filter((data) => data != list[idx1][idx2]))
-                  : setCate3(cate3?.filter((data) => data != list[idx1][idx2]))
+                  ? setCate2(cate2?.filter((data) => data !== list[idx1][idx2]))
+                  : setCate3(cate3?.filter((data) => data !== list[idx1][idx2]))
                 : idx1 === 0
                 ? setCate1(cate1?.concat(list[idx1][idx2]))
                 : idx1 === 1
@@ -91,70 +94,70 @@ const Index = () => {
     <S.Wrapper>
       <p>교육 프로그램에 대한 설명을 적어주세요.</p>
       <div>
-        <S.ContentBox>
-          <S.Input
-            placeholder="프로그램 이름"
-            height={"70px"}
-            fontSize={"30px"}
-            onChange={(e) =>
-              setLectureInfo({ ...lectureInfo, lecName: e.target.value })
-            }
-          />
-          <S.Input as={"div"}>
-            <D.SearchBar>
-              <D.CateLayout>
-                <D.Home
-                  onClick={() => {
-                    check.clear();
-                    setCheck(check);
-                    setBool(!bool);
-                  }}
-                >
-                  <AiOutlineHome className="icon" />
-                </D.Home>
-                {Drops}
-              </D.CateLayout>
-              <D.InputLayout>HI</D.InputLayout>
-            </D.SearchBar>
-          </S.Input>
-          <S.Input
-            placeholder="프로그램 설명"
-            as={"textarea"}
-            height={"300px"}
-            fontSize={"22px"}
-            onChange={(e) =>
-              setLectureInfo({ ...lectureInfo, lecDescription: e.target.value })
-            }
-          />
-          <S.FileBox>
-            <S.InBox>
-              <S.Label htmlFor="Poster">포스터 이미지파일</S.Label>
-              <input
-                type="file"
-                accept={[".png", ".jpeg", ".jpg", ".svg"]}
-                onChange={(file) =>
-                  setLectureInfo({
-                    ...lectureInfo,
-                    posterImage: file.target.value,
-                  })
-                }
-              />
-            </S.InBox>
-            <S.InBox>
-              <S.Label htmlFor="Attach">강의 첨부파일</S.Label>
-              <input
-                type="file"
-                multiple
-                onChange={(files) =>
-                  setLectureInfo({
-                    ...lectureInfo,
-                    attachedFile: files.target.value,
-                  })
-                }
-              />
-            </S.InBox>
-          </S.FileBox>
-        </S.ContentBox>
+        {/* <S.ContentBox> */}
+        <S.Input
+          placeholder="프로그램 이름"
+          height={"70px"}
+          fontSize={"30px"}
+          onChange={(e) =>
+            setLectureInfo({ ...lectureInfo, lecName: e.target.value })
+          }
+        />
+        {/* <S.Input as={"div"}> */}
+        <D.SearchBar>
+          <D.CateLayout>
+            <D.Home
+              onClick={() => {
+                check.clear();
+                setCheck(check);
+                setBool(!bool);
+              }}
+            >
+              <AiOutlineHome className="icon" />
+            </D.Home>
+            {Drops}
+          </D.CateLayout>
+          {/* <D.InputLayout>HI</D.InputLayout> */}
+        </D.SearchBar>
+        {/* </S.Input> */}
+        <S.Input
+          placeholder="프로그램 설명"
+          as={"textarea"}
+          height={"300px"}
+          fontSize={"22px"}
+          onChange={(e) =>
+            setLectureInfo({ ...lectureInfo, lecDescription: e.target.value })
+          }
+        />
+        <S.FileBox>
+          <S.InBox>
+            <S.Label htmlFor="Poster">포스터 이미지파일</S.Label>
+            <input
+              type="file"
+              accept={[".png", ".jpeg", ".jpg", ".svg"]}
+              onChange={(file) =>
+                setLectureInfo({
+                  ...lectureInfo,
+                  posterImage: file.target.value,
+                })
+              }
+            />
+          </S.InBox>
+          <S.InBox>
+            <S.Label htmlFor="Attach">강의 첨부파일</S.Label>
+            <input
+              type="file"
+              multiple
+              onChange={(files) =>
+                setLectureInfo({
+                  ...lectureInfo,
+                  attachedFile: files.target.value,
+                })
+              }
+            />
+          </S.InBox>
+        </S.FileBox>
+        {/* </S.ContentBox> */}
         <S.Submit onClick={submitInfo}>완료</S.Submit>
       </div>
     </S.Wrapper>
