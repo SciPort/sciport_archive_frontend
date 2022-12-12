@@ -7,27 +7,6 @@ import Register from "./pages/register/index";
 import Detail from "./pages/detail/index";
 import CreateLec from "./pages/createLec/index";
 import { atom, RecoilRoot } from "recoil";
-export const closeState = atom({
-  key: "close",
-  default: false,
-});
-export const Category1 = atom({
-  key: "category1",
-  default: [],
-});
-export const Category2 = atom({
-  key: "category2",
-  default: [],
-});
-export const Category3 = atom({
-  key: "category3",
-  default: [],
-});
-export const SetState = atom({
-  key: "set",
-  default: new Set(),
-});
-
 function App() {
   return (
     <>
