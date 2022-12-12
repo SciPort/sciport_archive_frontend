@@ -171,11 +171,10 @@ const Index = () => {
           onClick={() => {
             setLectureInfo({
               ...lectureInfo,
-              cate1: cate1,
-              cate2: cate2,
-              cate3: cate3,
+              cate1: cate[0],
+              cate2: cate[1],
+              cate3: cate[2],
             });
-            console.log(lectureInfo);
             // submitInfo();
           }}
         >
