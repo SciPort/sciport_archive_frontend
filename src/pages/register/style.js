@@ -1,18 +1,19 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  height: 88vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 2%;
 `;
 export const Register = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 80%;
+  height: 70%;
   width: 60%;
   border: 1px solid black;
 
