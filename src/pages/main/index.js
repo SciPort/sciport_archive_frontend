@@ -77,12 +77,25 @@ export default function Main() {
   }, []);
   const Lectures = lecs.map((lecture, idx) => (
     <S.LectureItem>
-      <img
-        src={`http://192.168.10.128:8080${lecture["posterUrl"]}`}
-      />
+      <img src={`http://192.168.10.128:8080${lecture["posterUrl"]}`} />
       <div className="desc">
-        HI
+        <span>
+          <span className="title">학기</span> {lecture["term"]}
+        </span>
+        <span>
+          <span className="title">교육기관</span>  {lecture["eduName"]}
+        </span>
+        <span>
+          <span className="title">교육명</span>  {lecture["education"]}
+        </span>
+        <span>
+          <span className="title">교실명</span>  {lecture["lesson"]}
+        </span>
+        <span>
+          <span className="title">강좌명</span> {lecture["name"]}
+        </span>
       </div>
+      HI
     </S.LectureItem>
   ));
   const Drops = list.map((data1, idx1) => (

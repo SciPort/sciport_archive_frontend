@@ -36,6 +36,9 @@ export const CateLayout = styled.div`
   display: flex;
 `;
 export const SearchBar = styled.div`
+  &:hover {
+    cursor: pointer;
+  }
   width: 80%;
   display: flex;
   flex-direction: row;
@@ -126,7 +129,7 @@ export const DropItem = styled.div`
     border-right: 1px solid black;
     border-left: 1px solid black;
     background-color: ${(props) =>
-      props.bgcolor == "#0c2136" ? props.bgcolor : "#1876d7;"};
+      props.bgcolor == "#0c2136" ? props.bgcolor : "#1876d7"};
     color: white;
     transition: all 0.2s ease;
   }
@@ -181,9 +184,10 @@ export const LectureLayout = styled.div`
   }
 `;
 export const LectureList = styled.div`
+  margin-top: 5%;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(25%, auto));
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 30px;
 `;
 export const LectureItem = styled.div`
@@ -196,13 +200,32 @@ export const LectureItem = styled.div`
     width: 100%;
     height: 100%;
   }
+  &:hover {
+    cursor: pointer;
+  }
   &:hover > .desc {
     top: 0;
+    box-shadow: 0 0 0 3px #1876d7 inset;
   }
   > .desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.5vw;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 100%;
+    height: 100%;
     top: 100%;
     position: relative;
     transition: all 0.3s ease-out;
+  }
+  span {
+    margin-top: 2%;
+    margin-left: 5%;
+  }
+  .desc .title {
+    color: #0060c4;
   }
 `;
 
