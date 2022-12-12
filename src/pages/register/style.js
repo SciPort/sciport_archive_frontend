@@ -1,24 +1,24 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  height: 100vh;
+  height: 88vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 2%;
+  padding-top: 5%;
 `;
 export const Register = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 70%;
+  height: 75%;
   width: 60%;
   border: 1px solid black;
 
   span {
-    margin-top: 5%;
+    margin-top: 2.5%;
     color: #4f71c9;
     font-size: 250%;
     font-weight: 700;
