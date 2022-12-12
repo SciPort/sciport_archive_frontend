@@ -17,6 +17,7 @@ export default function Main() {
   const [cate, setCate] = useState([[], [], []]);
   const [inp, setInp] = useState("");
   const [chg, setChg] = useState(false);
+  const [lecs, setLecs] = useState([]);
   const title = ["교육", "학기", "교실"];
   const list = [
     ["개인교육", "단체교육", "성인교육"],
@@ -38,24 +39,65 @@ export default function Main() {
       "후원회교육",
     ],
   ];
-  // function sub() {
-  //   const form = {
-  //     educations: cate1,
-  //     terms: cate2,
-  //     lessons: cate3,
-  //     name: inp,
-  //     page: 1,
-  //   };
-  //   console.log(form);
-  //   axios
-  //     .post("http://192.168.10.128:8080/lecture/getByCate", form)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
+  function sub() {
+    const form = {
+      educations: cate[0],
+      terms: cate[1],
+      lessons: cate[2],
+      name: inp,
+      page: 1,
+    };
+    console.log(form);
+    axios
+      .post("http://192.168.10.128:8080/lecture/getByCate", form)
+      .then((res) => {
+        console.log(res.data);
+        setLecs(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  useEffect(() => {
+    const form = {
+      educations: [],
+      terms: [],
+      lessons: [],
+      name: "",
+      page: 1,
+    };
+    axios
+      .post("http://192.168.10.128:8080/lecture/getByCate", form)
+      .then((res) => {
+        setLecs(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const Lectures = lecs.map((lecture, idx) => (
+    <S.LectureItem>
+      <img src={`http://192.168.10.128:8080${lecture["posterUrl"]}`} />
+      <div className="desc">
+        <span>
+          <span className="title">학기</span> {lecture["term"]}
+        </span>
+        <span>
+          <span className="title">교육기관</span>  {lecture["eduName"]}
+        </span>
+        <span>
+          <span className="title">교육명</span>  {lecture["education"]}
+        </span>
+        <span>
+          <span className="title">교실명</span>  {lecture["lesson"]}
+        </span>
+        <span>
+          <span className="title">강좌명</span> {lecture["name"]}
+        </span>
+      </div>
+      HI
+    </S.LectureItem>
+  ));
   const Drops = list.map((data1, idx1) => (
     <S.CateWrapper>
       <S.Cate>
@@ -108,28 +150,16 @@ export default function Main() {
           </S.Home>
           {Drops}
         </S.CateLayout>
-        <S.InputLayout>HI</S.InputLayout>
+        <S.InpWrapper>
+          <S.Input placeholder="검색어를 입력해 주세요" />
+          <S.Search onClick={sub}>
+            <AiOutlineSearch className="icon" />
+          </S.Search>
+        </S.InpWrapper>
       </S.SearchBar>
       <S.LectureLayout>
         <span>프로그램 리스트</span>
-        <S.LectureList>
-          <S.LectureItem>HI</S.LectureItem>
-          <S.LectureItem>HI</S.LectureItem>
-          <S.LectureItem>HI</S.LectureItem>
-          <S.LectureItem>HI</S.LectureItem>
-          <S.LectureItem>HI</S.LectureItem>
-          <S.LectureItem>HI</S.LectureItem>
-          <S.LectureItem>HI</S.LectureItem>
-          <S.LectureItem>HI</S.LectureItem>
-          <S.LectureItem>HI</S.LectureItem>
-          <S.LectureItem>HI</S.LectureItem>
-
-          <S.LectureItem>HI</S.LectureItem>
-          <S.LectureItem>HI</S.LectureItem>
-          <S.LectureItem>HI</S.LectureItem>
-
-          <S.LectureItem>HI</S.LectureItem>
-        </S.LectureList>
+        <S.LectureList>{Lectures}</S.LectureList>
       </S.LectureLayout>
     </S.Layout>
   );
