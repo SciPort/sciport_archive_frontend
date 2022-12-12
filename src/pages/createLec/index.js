@@ -18,57 +18,64 @@ const Index = () => {
     posterImage: [],
     attachedFile: [],
   });
-  const [check, setCheck] = useRecoilState(SetState);
+  const [check, setCheck] = useState(new Set());
   const [bool, setBool] = useState(true);
-  const [cate1, setCate1] = useRecoilState(Category1);
-  const [cate2, setCate2] = useRecoilState(Category2);
-  const [cate3, setCate3] = useRecoilState(Category3);
+  const [cate, setCate] = useState([[], [], []]);
+  const [inp, setInp] = useState("");
+  const [chg, setChg] = useState(false);
   const title = ["교육", "학기", "교실"];
+  const list = [
+    ["개인교육", "단체교육", "성인교육"],
+    [
+      "겨울학기",
+      "봄학기(1)",
+      "봄학기(2)",
+      "여름학기",
+      "가을학기(1)",
+      "가을학기(2)",
+    ],
+    [
+      "유아과학교실",
+      "창의탐구교실",
+      "실험탐구교실",
+      "SW코딩교실",
+      "창작메이커교실",
+      "프로젝트교실",
+      "후원회교육",
+    ],
+  ];
   const Drops = list.map((data1, idx1) => (
     <D.CateWrapper>
       <D.Cate>
         <span>{title[idx1]}</span>
         <div>
-          {" "}
           <BsArrowDownShort className="icon" size={"70%"} />
         </div>
       </D.Cate>
       <div className="dropdown">
-        {data1.map((data, idx2) => (
-          <D.DropItem
-            color={
-              check.has(idx1.toString() + idx2.toString()) ? "white" : "#000000"
-            }
-            bgcolor={
-              check.has(idx1.toString() + idx2.toString())
-                ? "#0c2136"
-                : "#ffffff"
-            }
-            onClick={() => {
-              check.has(idx1.toString() + idx2.toString())
-                ? idx1 === 0
-                  ? setCate1(cate1?.filter((data) => data !== list[idx1][idx2]))
-                  : idx1 === 1
-                  ? setCate2(cate2?.filter((data) => data !== list[idx1][idx2]))
-                  : setCate3(cate3?.filter((data) => data !== list[idx1][idx2]))
-                : idx1 === 0
-                ? setCate1(cate1?.concat(list[idx1][idx2]))
-                : idx1 === 1
-                ? setCate2(cate2?.concat(list[idx1][idx2]))
-                : setCate3(cate3?.concat(list[idx1][idx2]));
-
-              check.has(idx1.toString() + idx2.toString())
-                ? check.delete(idx1.toString() + idx2.toString())
-                : check.add(idx1.toString() + idx2.toString());
-              setCheck(check);
-            }}
-          >
-            <span>{data}</span>
-            {check.has(idx1.toString() + idx2.toString()) ? (
-              <AiOutlineCheck className="icon" />
-            ) : null}
-          </D.DropItem>
-        ))}
+        {data1.map((data, idx2) => {
+          let code = idx1.toString() + idx2.toString();
+          return (
+            <D.DropItem
+              color={check.has(code) ? "white" : "#000000"}
+              bgcolor={check.has(code) ? "#0c2136" : "#ffffff"}
+              onClick={() => {
+                check.has(code)
+                  ? (cate[idx1] = cate[idx1]?.filter(
+                      (data) => data != list[idx1][idx2]
+                    ))
+                  : (cate[idx1] = cate[idx1]?.concat(list[idx1][idx2]));
+                setCate(cate);
+                check.has(code) ? check.delete(code) : check.add(code);
+                setCheck(check);
+                setChg(!chg);
+              }}
+            >
+              <span>{data}</span>
+              {check.has(code) ? <AiOutlineCheck className="icon" /> : null}
+            </D.DropItem>
+          );
+        })}
       </div>
     </D.CateWrapper>
   ));
