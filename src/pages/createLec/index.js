@@ -1,12 +1,12 @@
-import axios from "axios";
-import React, { useState } from "react";
-import * as S from "./style";
-import * as D from "../main/style";
-import { atom, useRecoilState, useRecoilValue } from "recoil";
-import { list } from "../../assets/data/export";
-import { Category1, Category2, Category3, SetState } from "../../App";
-import { AiOutlineCheck, AiOutlineHome } from "react-icons/ai";
-import { BsArrowDownShort } from "react-icons/bs";
+// import axios from "axios";
+// import React, { useState } from "react";
+// import * as S from "./style";
+// import * as D from "../main/style";
+// import { atom, useRecoilState, useRecoilValue } from "recoil";
+// import { list } from "../../assets/data/export";
+// import { Category1, Category2, Category3, SetState } from "../../App";
+// import { AiOutlineCheck, AiOutlineHome } from "react-icons/ai";
+// import { BsArrowDownShort } from "react-icons/bs";
 
 const Index = () => {
   const [lectureInfo, setLectureInfo] = useState({
@@ -57,30 +57,32 @@ const Index = () => {
                 ? setCate2(cate2?.concat(list[idx1][idx2]))
                 : setCate3(cate3?.concat(list[idx1][idx2]));
 
-              check.has(idx1.toString() + idx2.toString())
-                ? check.delete(idx1.toString() + idx2.toString())
-                : check.add(idx1.toString() + idx2.toString());
-              setCheck(check);
-            }}
-          >
-            <span>{data}</span>
-            {check.has(idx1.toString() + idx2.toString()) ? (
-              <AiOutlineCheck className="icon" />
-            ) : null}
-          </D.DropItem>
-        ))}
-      </div>
-    </D.CateWrapper>
-  ));
 
-  const submitInfo = async () => {
-    // axios
-    //   .post("url", lectureInfo)
-    //   .then((response) => {
-    //     console.log(response);
-    //     window.location.href = "/";
-    //   })
-    //   .catch((error) => console.log(error));
+//               check.has(idx1.toString() + idx2.toString())
+//                 ? check.delete(idx1.toString() + idx2.toString())
+//                 : check.add(idx1.toString() + idx2.toString());
+//               setCheck(check);
+//             }}
+//           >
+//             <span>{data}</span>
+//             {check.has(idx1.toString() + idx2.toString()) ? (
+//               <AiOutlineCheck className="icon" />
+//             ) : null}
+//           </D.DropItem>
+//         ))}
+//       </div>
+//     </D.CateWrapper>
+//   ));
+
+//   const submitInfo = async () => {
+//     // axios
+//     //   .post("url", lectureInfo)
+//     //   .then((response) => {
+//     //     console.log(response);
+//     //     window.location.href = "/";
+//     //   })
+//     //   .catch((error) => console.log(error));
+
 
     try {
       const response = await axios.post("url", lectureInfo);
@@ -164,4 +166,5 @@ const Index = () => {
   );
 };
 
-export default Index;
+
+// export default Index;
