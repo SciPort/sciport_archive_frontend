@@ -10,6 +10,9 @@ import { BsArrowDownShort } from "react-icons/bs";
 
 const Index = () => {
   const [lectureInfo, setLectureInfo] = useState({
+    cate1: [],
+    cate2: [],
+    cate3: [],
     lecName: "",
     lecDescription: "",
     posterImage: [],
@@ -114,7 +117,7 @@ const Index = () => {
             </D.Home>
             {Drops}
           </D.CateLayout>
-          <D.InputLayout>HI</D.InputLayout>
+          {/* <D.InputLayout>HI</D.InputLayout> */}
         </D.SearchBar>
         {/* </S.Input> */}
         <S.Input

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 130vh;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,6 +29,7 @@ export const Wrapper = styled.div`
     color: white;
     font-weight: 700;
     margin-bottom: 3%;
+    margin-top: 7%;
   }
 `;
 export const ContentBox = styled.div`

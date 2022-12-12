@@ -26,9 +26,11 @@ export const CateLayout = styled.div`
 `;
 export const SearchBar = styled.div`
   width: 80%;
-  display : flex;
-  flex-direction : row;
-  height : 10%;
+  display: flex;
+  flex-direction: row;
+  /* height: 70px; */
+  height: 20%;
+  min-height: 10%;
   background-color: #0c2136;
   margin-top: -4vh;
 `;
@@ -104,6 +106,7 @@ export const DropItem = styled.div`
   height: 5.5vh;
   display: flex;
   align-items: center;
+  /* justify-content: space-evenly; */
   border-bottom: 1px solid;
   border-right: 1px solid;
   border-left: 1px solid;
@@ -141,8 +144,9 @@ export const CateWrapper = styled.div`
     display: none;
   }
   &:hover > .dropdown {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
+    display: block;
     animation: ${growDown} 300ms linear forwards;
     transform-origin: top center;
   }
