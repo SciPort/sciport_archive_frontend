@@ -12,6 +12,17 @@ export const growDown = keyframes`
   }
 `;
 
+export const fadeIn = keyframes`
+  from{
+    opacity : 0;
+    transform : translateY(20px);
+  }
+  to{
+    opacity : 3;
+    transform : none;
+  }
+`;
+
 export const Layout = styled.div`
   width: 100%;
   height: 100%;
@@ -103,16 +114,17 @@ export const InputLayout = styled.div`
 export const DropItem = styled.div`
   background-color: ${(props) => props.bgcolor};
   color: ${(props) => props.color};
-  width: 100%;
+  width: 99.5%;
   height: 5.5vh;
   display: flex;
   align-items: center;
-  /* justify-content: space-evenly; */
   border-bottom: 1px solid;
   border-right: 1px solid;
   border-left: 1px solid;
   box-sizing: border-box;
   &:hover {
+    border-right: 1px solid black;
+    border-left: 1px solid black;
     background-color: ${(props) =>
       props.bgcolor == "#0c2136" ? props.bgcolor : "#1876d7;"};
     color: white;
@@ -127,7 +139,7 @@ export const DropItem = styled.div`
   }
   > .icon {
     position: absolute;
-    margin-left: 10vw;
+    margin-left: 85%;
   }
 `;
 export const CateWrapper = styled.div`
@@ -146,8 +158,8 @@ export const CateWrapper = styled.div`
     display: none;
   }
   &:hover > .dropdown {
-    /* display: flex;
-    flex-direction: column; */
+    position: relative;
+    z-index: 2;
     display: block;
     animation: ${growDown} 300ms linear forwards;
     transform-origin: top center;
@@ -161,7 +173,6 @@ export const CateWrapper = styled.div`
 export const LectureLayout = styled.div`
   height: 100%;
   width: 80%;
-  background-color: lightblue;
   margin-top: 5%;
   display: block;
   > span {
@@ -172,12 +183,58 @@ export const LectureLayout = styled.div`
 export const LectureList = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(33%, auto));
-  grid-gap: 10px;
-  background-color: bisque;
+  grid-template-columns: repeat(auto-fill, minmax(25%, auto));
+  grid-gap: 30px;
 `;
 export const LectureItem = styled.div`
+  height: 60vh;
   width: 100%;
-  height: 100px;
-  background-color: aliceblue;
+  position: relative;
+  overflow: hidden;
+  > img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  &:hover > .desc {
+    top: 0;
+  }
+  > .desc {
+    top: 100%;
+    position: relative;
+    transition: all 0.3s ease-out;
+  }
+`;
+
+export const Input = styled.input`
+  height: auto;
+  width: 100%;
+  &:focus {
+    outline: none;
+  }
+  font-size: 3vh;
+`;
+export const Search = styled.div`
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > input {
+    font-size: 22px;
+    width: 40%;
+    height: 90%;
+  }
+  > .icon {
+    color: white;
+    width: 80%;
+    height: 80%;
+  }
+`;
+
+export const InpWrapper = styled.div`
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
 `;
