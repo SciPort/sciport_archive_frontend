@@ -9,9 +9,12 @@ import {
   AiOutlineArrowDown,
   AiOutlineHome,
   AiOutlineCheck,
+  AiFillFileAdd,
 } from "react-icons/ai";
 import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
+import { Link, useNavigate } from "react-router-dom";
 export default function Main() {
+  const navi = useNavigate();
   const [check, setCheck] = useState(new Set());
   const [bool, setBool] = useState(true);
   const [cate, setCate] = useState([[], [], []]);
@@ -78,24 +81,26 @@ export default function Main() {
   const Lectures = lecs.map((lecture, idx) => (
     <S.LectureItem>
       <img src={`http://192.168.10.128:8080${lecture["posterUrl"]}`} />
-      <div className="desc">
+      <div
+        className="desc"
+        onClick={() => navi("/detail", { state: { id: lecture["id"] } })}
+      >
         <span>
           <span className="title">학기</span> {lecture["term"]}
         </span>
         <span>
-          <span className="title">교육기관</span>  {lecture["eduName"]}
+          <span className="title">교육기관</span> {lecture["eduName"]}
         </span>
         <span>
-          <span className="title">교육명</span>  {lecture["education"]}
+          <span className="title">교육명</span> {lecture["education"]}
         </span>
         <span>
-          <span className="title">교실명</span>  {lecture["lesson"]}
+          <span className="title">교실명</span> {lecture["lesson"]}
         </span>
         <span>
           <span className="title">강좌명</span> {lecture["name"]}
         </span>
       </div>
-      HI
     </S.LectureItem>
   ));
   const Drops = list.map((data1, idx1) => (
@@ -158,7 +163,15 @@ export default function Main() {
         </S.InpWrapper>
       </S.SearchBar>
       <S.LectureLayout>
-        <span>프로그램 리스트</span>
+        <S.Info>
+          <span>프로그램 리스트</span>
+          <Link to="/createLec">
+            <span>
+              강좌 개설하기
+              <AiFillFileAdd />
+            </span>
+          </Link>
+        </S.Info>
         <S.LectureList>{Lectures}</S.LectureList>
       </S.LectureLayout>
     </S.Layout>

@@ -178,10 +178,6 @@ export const LectureLayout = styled.div`
   width: 80%;
   margin-top: 5%;
   display: block;
-  > span {
-    font-size: 3vw;
-    font-weight: bold;
-  }
 `;
 export const LectureList = styled.div`
   margin-top: 5%;
@@ -260,4 +256,16 @@ export const InpWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row;
+`;
+
+export const Info = styled.div`
+  font-size: 3vw;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  span {
+    display: flex;
+    align-items: center;
+    color : black;
+  }
 `;
