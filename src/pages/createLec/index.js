@@ -2,9 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import * as S from "./style";
 import * as D from "../main/style";
-import { atom, useRecoilState, useRecoilValue } from "recoil";
-import { list } from "../../assets/data/export";
-import { Category1, Category2, Category3, SetState } from "../../App";
 import { AiOutlineCheck, AiOutlineHome } from "react-icons/ai";
 import { BsArrowDownShort } from "react-icons/bs";
 
@@ -176,6 +173,7 @@ const Index = () => {
               cate3: cate[2],
             });
             // submitInfo();
+            console.log(lectureInfo);
           }}
         >
           완료
