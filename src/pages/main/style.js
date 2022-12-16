@@ -25,7 +25,7 @@ export const fadeIn = keyframes`
 
 export const Layout = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -117,7 +117,7 @@ export const InputLayout = styled.div`
 export const DropItem = styled.div`
   background-color: ${(props) => props.bgcolor};
   color: ${(props) => props.color};
-  width: 99.5%;
+  width: 100%;
   height: 5.5vh;
   display: flex;
   align-items: center;
@@ -174,10 +174,17 @@ export const CateWrapper = styled.div`
 `;
 
 export const LectureLayout = styled.div`
-  height: 100%;
+  height: auto;
   width: 80%;
   margin-top: 5%;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  > span {
+    margin-top: 5%;
+    font-size: 250%;
+    font-weight: bold;
+    text-align: center;
+  }
 `;
 export const LectureList = styled.div`
   margin-top: 5%;
@@ -224,6 +231,15 @@ export const LectureItem = styled.div`
     color: #0060c4;
   }
 `;
+export const LectureWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  .mainTitle {
+    text-align: center;
+    font-size: 150%;
+    font-weight: bold;
+  }
+`;
 
 export const Input = styled.input`
   height: auto;
@@ -266,6 +282,30 @@ export const Info = styled.div`
   span {
     display: flex;
     align-items: center;
-    color : black;
+    color: black;
+  }
+`;
+
+export const Bottom = styled.div`
+  width: 100%;
+  height: 18vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const NumList = styled.div`
+  width: 50%;
+  height: 100%;
+  display: grid;
+  font-size: 150%;
+  grid-template-columns: repeat(11, 1fr);
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon {
+    width: 60%;
+    height: 60%;
   }
 `;
