@@ -1,27 +1,28 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Lecture from "../../components/lecture";
-import { userState } from "../../components/states";
-import { list } from "../../assets/data/export";
 import * as S from "./style";
 import {
   AiOutlineSearch,
-  AiOutlineArrowDown,
   AiOutlineHome,
   AiOutlineCheck,
+  AiFillCaretLeft,
   AiFillFileAdd,
+  AiFillCaretRight,
 } from "react-icons/ai";
-import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
+import { BsArrowDownShort } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 export default function Main() {
   const navi = useNavigate();
+  const [name, setName] = useState("");
   const [check, setCheck] = useState(new Set());
-  const [bool, setBool] = useState(true);
   const [cate, setCate] = useState([[], [], []]);
-  const [inp, setInp] = useState("");
   const [chg, setChg] = useState(false);
   const [lecs, setLecs] = useState([]);
+  const [maxPage, setMaxPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageIdx, setPageIdx] = useState(1);
   const title = ["교육", "학기", "교실"];
+  const nums = [];
   const list = [
     ["개인교육", "단체교육", "성인교육"],
     [
@@ -36,10 +37,10 @@ export default function Main() {
       "유아과학교실",
       "창의탐구교실",
       "실험탐구교실",
-      "SW코딩교실",
+      "소프트웨어 코딩교실",
       "창작메이커교실",
       "프로젝트교실",
-      "후원회교육",
+      "주제탐구교실",
     ],
   ];
   function sub() {
@@ -47,14 +48,19 @@ export default function Main() {
       educations: cate[0],
       terms: cate[1],
       lessons: cate[2],
-      name: inp,
-      page: 1,
+      name: name,
+      page: currentPage,
     };
     console.log(form);
     axios
       .post("http://192.168.10.128:8080/lecture/getByCate", form)
       .then((res) => {
         console.log(res.data);
+        setMaxPage(res.data[0]?.maxPage);
+        for (let i = 1; i <= 9; i++) {
+            if(i > maxPage%10) nums.push(null)
+          else nums.push(i);
+        }
         setLecs(res.data);
       })
       .catch((err) => {
@@ -72,36 +78,48 @@ export default function Main() {
     axios
       .post("http://192.168.10.128:8080/lecture/getByCate", form)
       .then((res) => {
+        setMaxPage(res.data[0].maxPage);
         setLecs(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+  useEffect(() => {
+    sub();
+  }, [currentPage]);
   const Lectures = lecs.map((lecture, idx) => (
-    <S.LectureItem>
-      <img src={`http://192.168.10.128:8080${lecture["posterUrl"]}`} />
-      <div
-        className="desc"
-        onClick={() => navi("/detail", { state: { id: lecture["id"] } })}
-      >
-        <span>
-          <span className="title">학기</span> {lecture["term"]}
-        </span>
-        <span>
-          <span className="title">교육기관</span> {lecture["eduName"]}
-        </span>
-        <span>
-          <span className="title">교육명</span> {lecture["education"]}
-        </span>
-        <span>
-          <span className="title">교실명</span> {lecture["lesson"]}
-        </span>
-        <span>
-          <span className="title">강좌명</span> {lecture["name"]}
-        </span>
-      </div>
-    </S.LectureItem>
+    <S.LectureWrapper>
+      <S.LectureItem>
+        <img
+          src={`http://192.168.10.128:8080${lecture["posterUrl"]}`}
+          onError={(e) => {
+            e.target.src = "https://www.sciport.or.kr/_Img/Event/evt_pic2.jpg";
+          }}
+        />
+        <div
+          className="desc"
+          onClick={() => navi("/detail", { state: { id: lecture["id"] } })}
+        >
+          <span>
+            <span className="title">학기</span> {lecture["term"]}
+          </span>
+          <span>
+            <span className="title">교육기관</span> {lecture["eduName"]}
+          </span>
+          <span>
+            <span className="title">교육명</span> {lecture["education"]}
+          </span>
+          <span>
+            <span className="title">교실명</span> {lecture["lesson"]}
+          </span>
+          <span>
+            <span className="title">강좌명</span> {lecture["name"]}
+          </span>
+        </div>
+      </S.LectureItem>
+      <div className="mainTitle">{lecture["name"]}</div>
+    </S.LectureWrapper>
   ));
   const Drops = list.map((data1, idx1) => (
     <S.CateWrapper>
@@ -138,6 +156,13 @@ export default function Main() {
       </div>
     </S.CateWrapper>
   ));
+  console.log(currentPage, maxPage);
+  console.log(lecs);
+  const Numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+    <div onClick={() => setCurrentPage((pageIdx - 1) * 10 + num)}>
+      {num ? (pageIdx - 1) * 10 + num : ""}
+    </div>
+  ));
   return (
     <S.Layout>
       <S.Img src="https://www.sciport.or.kr/homepage/kor/_Img/Layout/svisual_MN035.jpg" />
@@ -148,7 +173,7 @@ export default function Main() {
             onClick={() => {
               check.clear();
               setCheck(check);
-              setBool(!bool);
+              setChg(!chg);
             }}
           >
             <AiOutlineHome className="icon" />
@@ -156,8 +181,18 @@ export default function Main() {
           {Drops}
         </S.CateLayout>
         <S.InpWrapper>
-          <S.Input placeholder="검색어를 입력해 주세요" />
-          <S.Search onClick={sub}>
+          <S.Input
+            placeholder="검색어를 입력해 주세요"
+            type="text"
+            onChange={(e) => setName(e.target.value)}
+          />
+          <S.Search
+            onClick={() => {
+              sub();
+              setCurrentPage(1);
+              setPageIdx(1);
+            }}
+          >
             <AiOutlineSearch className="icon" />
           </S.Search>
         </S.InpWrapper>
@@ -172,7 +207,36 @@ export default function Main() {
             </span>
           </Link>
         </S.Info>
-        <S.LectureList>{Lectures}</S.LectureList>
+        {lecs.length === 0 ? (
+          <span>검색 결과가 없습니다!</span>
+        ) : (
+          <>
+            <S.LectureList>{Lectures}</S.LectureList>
+            <S.Bottom>
+              <S.NumList>
+                <div
+                  onClick={() => {
+                    pageIdx - 1 != 0
+                      ? setPageIdx(pageIdx - 1)
+                      : setPageIdx(pageIdx);
+                  }}
+                >
+                  <AiFillCaretLeft className="icon" />
+                </div>
+                {Numbers}
+                <div
+                  onClick={() => {
+                    pageIdx === parseInt(maxPage / 10) + 1
+                      ? setPageIdx(pageIdx)
+                      : setPageIdx(pageIdx + 1);
+                  }}
+                >
+                  <AiFillCaretRight className="icon" />
+                </div>
+              </S.NumList>
+            </S.Bottom>
+          </>
+        )}
       </S.LectureLayout>
     </S.Layout>
   );
