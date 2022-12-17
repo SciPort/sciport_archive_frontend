@@ -71,9 +71,9 @@ export const Home = styled.div`
   align-items: center;
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   > .icon {
-    width: 50%;
-    height: 50%;
-    color: white;
+    width: 60%;
+    height: 60%;
+   
   }
 `;
 
@@ -304,8 +304,14 @@ export const NumList = styled.div`
     align-items: center;
     justify-content: center;
   }
+  .underline{
+    text-decoration : underline;
+  }
   .icon {
     width: 60%;
     height: 60%;
+  }
+  &:hover {
+    cursor: pointer;
   }
 `;

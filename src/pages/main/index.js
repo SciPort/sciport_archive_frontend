@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import {
   AiOutlineSearch,
-  AiOutlineHome,
   AiOutlineCheck,
   AiFillCaretLeft,
   AiFillFileAdd,
   AiFillCaretRight,
 } from "react-icons/ai";
+import {BiRefresh} from "react-icons/bi"
 import { BsArrowDownShort } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 export default function Main() {
@@ -18,9 +18,9 @@ export default function Main() {
   const [cate, setCate] = useState([[], [], []]);
   const [chg, setChg] = useState(false);
   const [lecs, setLecs] = useState([]);
-  const [maxPage, setMaxPage] = useState(0);
+  const [maxPage, setMaxPage] = useState(127);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageIdx, setPageIdx] = useState(1);
+  const [pageIdx, setPageIdx] = useState(0);
   const title = ["교육", "학기", "교실"];
   const nums = [];
   const list = [
@@ -51,16 +51,10 @@ export default function Main() {
       name: name,
       page: currentPage,
     };
-    console.log(form);
     axios
       .post("http://192.168.10.128:8080/lecture/getByCate", form)
       .then((res) => {
-        console.log(res.data);
         setMaxPage(res.data[0]?.maxPage);
-        for (let i = 1; i <= 9; i++) {
-            if(i > maxPage%10) nums.push(null)
-          else nums.push(i);
-        }
         setLecs(res.data);
       })
       .catch((err) => {
@@ -85,9 +79,23 @@ export default function Main() {
         console.log(err);
       });
   }, []);
+
+  const PageIndexDown = () => {
+    if (pageIdx !== 0) {
+      setCurrentPage((pageIdx - 1) * 10 + 1);
+      setPageIdx(pageIdx - 1);
+    }
+  };
+  const PageIndexUp = () => {
+    if (parseInt(maxPage / 10) !== pageIdx) {
+      setCurrentPage((pageIdx + 1) * 10 + 1);
+      setPageIdx(pageIdx + 1);
+    }
+  };
   useEffect(() => {
     sub();
   }, [currentPage]);
+
   const Lectures = lecs.map((lecture, idx) => (
     <S.LectureWrapper>
       <S.LectureItem>
@@ -156,11 +164,12 @@ export default function Main() {
       </div>
     </S.CateWrapper>
   ));
-  console.log(currentPage, maxPage);
-  console.log(lecs);
   const Numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-    <div onClick={() => setCurrentPage((pageIdx - 1) * 10 + num)}>
-      {num ? (pageIdx - 1) * 10 + num : ""}
+    <div
+      onClick={() => setCurrentPage(pageIdx * 10 + num)}
+      className={currentPage === pageIdx * 10 + num ? "underline" : null}
+    >
+      {maxPage >= pageIdx * 10 + num ? pageIdx * 10 + num : ""}
     </div>
   ));
   return (
@@ -173,10 +182,10 @@ export default function Main() {
             onClick={() => {
               check.clear();
               setCheck(check);
-              setChg(!chg);
+              setCate([[], [], []]);
             }}
           >
-            <AiOutlineHome className="icon" />
+            <BiRefresh className="icon" color="white"/>
           </S.Home>
           {Drops}
         </S.CateLayout>
@@ -190,7 +199,7 @@ export default function Main() {
             onClick={() => {
               sub();
               setCurrentPage(1);
-              setPageIdx(1);
+              setPageIdx(0);
             }}
           >
             <AiOutlineSearch className="icon" />
@@ -214,23 +223,11 @@ export default function Main() {
             <S.LectureList>{Lectures}</S.LectureList>
             <S.Bottom>
               <S.NumList>
-                <div
-                  onClick={() => {
-                    pageIdx - 1 != 0
-                      ? setPageIdx(pageIdx - 1)
-                      : setPageIdx(pageIdx);
-                  }}
-                >
+                <div onClick={() => PageIndexDown()}>
                   <AiFillCaretLeft className="icon" />
                 </div>
                 {Numbers}
-                <div
-                  onClick={() => {
-                    pageIdx === parseInt(maxPage / 10) + 1
-                      ? setPageIdx(pageIdx)
-                      : setPageIdx(pageIdx + 1);
-                  }}
-                >
+                <div onClick={() => PageIndexUp()}>
                   <AiFillCaretRight className="icon" />
                 </div>
               </S.NumList>
