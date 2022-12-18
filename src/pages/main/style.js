@@ -306,6 +306,7 @@ export const NumList = styled.div`
   }
   .underline{
     text-decoration : underline;
+    text-underline-position : under
   }
   .icon {
     width: 60%;

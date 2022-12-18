@@ -8,7 +8,7 @@ import {
   AiFillFileAdd,
   AiFillCaretRight,
 } from "react-icons/ai";
-import {BiRefresh} from "react-icons/bi"
+import { BiRefresh } from "react-icons/bi";
 import { BsArrowDownShort } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 export default function Main() {
@@ -22,7 +22,6 @@ export default function Main() {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageIdx, setPageIdx] = useState(0);
   const title = ["교육", "학기", "교실"];
-  const nums = [];
   const list = [
     ["개인교육", "단체교육", "성인교육"],
     [
@@ -147,7 +146,7 @@ export default function Main() {
               onClick={() => {
                 check.has(code)
                   ? (cate[idx1] = cate[idx1]?.filter(
-                      (data) => data != list[idx1][idx2]
+                      (data) => data !== list[idx1][idx2]
                     ))
                   : (cate[idx1] = cate[idx1]?.concat(list[idx1][idx2]));
                 setCate(cate);
@@ -185,7 +184,7 @@ export default function Main() {
               setCate([[], [], []]);
             }}
           >
-            <BiRefresh className="icon" color="white"/>
+            <BiRefresh className="icon" color="white" />
           </S.Home>
           {Drops}
         </S.CateLayout>
