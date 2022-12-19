@@ -4,6 +4,7 @@ import * as S from "../createLec/style";
 import * as D from "../main/style";
 import { AiOutlineCheck, AiOutlineHome } from "react-icons/ai";
 import { BsArrowDownShort } from "react-icons/bs";
+import { BiRefresh } from "react-icons/bi";
 
 const Index = () => {
   const [lectureInfo, setLectureInfo] = useState({
@@ -116,14 +117,13 @@ const Index = () => {
               onClick={() => {
                 check.clear();
                 setCheck(check);
-                setBool(!bool);
+                setCate([[], [], []]);
               }}
             >
-              <AiOutlineHome className="icon" />
+              <BiRefresh className="icon" color="white" />
             </D.Home>
             {Drops}
           </D.CateLayout>
-          {/* <D.InputLayout>HI</D.InputLayout> */}
         </D.SearchBar>
         {/* </S.Input> */}
         <S.Input
