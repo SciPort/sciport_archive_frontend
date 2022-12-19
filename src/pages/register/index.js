@@ -70,10 +70,7 @@ const Index = () => {
           />
           <input value="회원가입" type="submit" onClick={RegisterFunc} />
         </S.RegisterForm>
-        <S.SubmitForm>
-          {/* <button style={{backgroundColor: "#2D97F8"}}>회원가입</button>
-          <button style={{backgroundColor: "#2D72F8"}}>아이디/비밀번호 찾기</button> */}
-        </S.SubmitForm>
+       
       </S.Register>
     </S.Wrapper>
   );
