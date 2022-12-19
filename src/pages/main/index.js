@@ -169,8 +169,13 @@ export default function Main() {
     </S.CateWrapper>
   ));
   const Numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-    <div
-      onClick={() =>{setCurrentPage(pageIdx * 10 + num);} }
+   
+      onClick={() =>
+        setCurrentPage(
+          currentPage === pageIdx * 10 + num ? pageIdx * 10 + num : currentPage
+        )
+      }
+
       className={currentPage === pageIdx * 10 + num ? "underline" : null}
     >
       {maxPage >= pageIdx * 10 + num ? pageIdx * 10 + num : ""}
