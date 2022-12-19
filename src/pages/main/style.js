@@ -120,7 +120,7 @@ export const DropItem = styled.div`
   height: 5.5vh;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid;
+  border-top: 1px solid;
   border-right: 1px solid;
   border-left: 1px solid;
   box-sizing: border-box;
@@ -160,6 +160,7 @@ export const CateWrapper = styled.div`
     display: none;
   }
   &:hover > .dropdown {
+    border-bottom : 1px solid;
     position: relative;
     z-index: 2;
     display: block;
@@ -300,7 +301,7 @@ export const NumList = styled.div`
   height: 100%;
   display: grid;
   font-size: 150%;
-  grid-template-columns: repeat(11, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   > div {
     display: flex;
     align-items: center;

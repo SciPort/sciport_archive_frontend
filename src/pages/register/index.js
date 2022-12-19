@@ -70,7 +70,6 @@ const Index = () => {
           />
           <input value="회원가입" type="submit" onClick={RegisterFunc} />
         </S.RegisterForm>
-       
       </S.Register>
     </S.Wrapper>
   );
