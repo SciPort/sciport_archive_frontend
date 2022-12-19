@@ -4,15 +4,11 @@ import * as S from "./style";
 import * as D from "../main/style";
 import { atom, useRecoilState, useRecoilValue } from "recoil";
 import { list } from "../../assets/data/export";
-import { Category1, Category2, Category3, SetState } from "../../App";
 import { AiOutlineCheck, AiOutlineHome } from "react-icons/ai";
 import { BsArrowDownShort } from "react-icons/bs";
 
 const Index = () => {
   const [lectureInfo, setLectureInfo] = useState({
-    cate1: [],
-    cate2: [],
-    cate3: [],
     lecName: "",
     eduName: "",
     lecDescription: "",
@@ -85,14 +81,15 @@ const Index = () => {
   ));
 
   const submitInfo = () => {
-    console.log(lectureInfo);
+    console.log(cate);
     const form = new FormData();
+    console.log(lectureInfo);
     form.append("name", lectureInfo.lecName);
     form.append("eduName", lectureInfo.eduName);
     form.append("content", lectureInfo.lecDescription);
-    form.append("education", "개인교육");
-    form.append("term", "겨울학기");
-    form.append("lesson", "유아과학교실");
+    form.append("education", cate[0][0]);
+    form.append("term", cate[1][0]);
+    form.append("lesson", cate[2][0]);
     form.append("isDistanceClass", lectureInfo.isDistanceClass);
     form.append("year", "2022");
     form.append("poster", lectureInfo.posterImage);
