@@ -9,4 +9,19 @@ const userState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
-export { userState };
+const checkState = atom({
+  key: "check",
+  default: new Set(),
+  effects_UNSTABLE: [persistAtom],
+});
+const cateState = atom({
+  key: "cate",
+  default: [[], [], []],
+  effects_UNSTABLE: [persistAtom],
+});
+const nameState = atom({
+  key: "name",
+  default: "",
+  effects_UNSTABLE: [persistAtom],
+});
+export { userState, cateState, nameState, checkState };
