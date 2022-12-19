@@ -53,7 +53,6 @@ export const Input = styled.input`
   font-size: ${(props) => props.fontSize};
   padding-left: 1.5%;
   padding: 15px;
-
   &:focus {
     outline: none;
   }
