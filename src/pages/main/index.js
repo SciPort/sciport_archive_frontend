@@ -11,6 +11,8 @@ import {
 import { BiRefresh } from "react-icons/bi";
 import { BsArrowDownShort } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
+import { userState } from "../../components/states";
+import { useRecoilState } from "recoil";
 export default function Main() {
   const navi = useNavigate();
   const [name, setName] = useState("");
@@ -18,9 +20,10 @@ export default function Main() {
   const [cate, setCate] = useState([[], [], []]);
   const [chg, setChg] = useState(false);
   const [lecs, setLecs] = useState([]);
-  const [maxPage, setMaxPage] = useState(127);
+  const [maxPage, setMaxPage] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageIdx, setPageIdx] = useState(0);
+  const [user, setUser] = useRecoilState(userState);
   const title = ["교육", "학기", "교실"];
   const list = [
     ["개인교육", "단체교육", "성인교육"],
@@ -79,22 +82,24 @@ export default function Main() {
       });
   }, []);
 
-  const PageIndexDown = () => {
+  const PageIndexDown = () => { 
     if (pageIdx !== 0) {
       setCurrentPage((pageIdx - 1) * 10 + 1);
       setPageIdx(pageIdx - 1);
     }
+    // window.scrollTo({ top: 0, behavior: "smooth" }); 
   };
   const PageIndexUp = () => {
     if (parseInt(maxPage / 10) !== pageIdx) {
       setCurrentPage((pageIdx + 1) * 10 + 1);
       setPageIdx(pageIdx + 1);
     }
+    // window.scrollTo({ top: 0, behavior: "smooth" });  
   };
   useEffect(() => {
     sub();
   }, [currentPage]);
-
+  console.log(user);
   const Lectures = lecs.map((lecture, idx) => (
     <S.LectureWrapper>
       <S.LectureItem>
@@ -164,12 +169,13 @@ export default function Main() {
     </S.CateWrapper>
   ));
   const Numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-    <div
+   
       onClick={() =>
         setCurrentPage(
           currentPage === pageIdx * 10 + num ? pageIdx * 10 + num : currentPage
         )
       }
+
       className={currentPage === pageIdx * 10 + num ? "underline" : null}
     >
       {maxPage >= pageIdx * 10 + num ? pageIdx * 10 + num : ""}

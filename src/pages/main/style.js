@@ -129,7 +129,7 @@ export const DropItem = styled.div`
     border-right: 1px solid black;
     border-left: 1px solid black;
     background-color: ${(props) =>
-      props.bgcolor == "#0c2136" ? props.bgcolor : "#1876d7"};
+      props.bgcolor === "#0c2136" ? props.bgcolor : "#1876d7"};
     color: white;
     transition: all 0.2s ease;
   }
