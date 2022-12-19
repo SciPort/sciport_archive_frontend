@@ -34,6 +34,7 @@ export default function Main() {
       name: name,
       page: currentPage,
     };
+    console.log(form);
     axios
       .post("http://192.168.10.128:8080/lecture/getByCate", form)
       .then((res) => {
@@ -44,6 +45,7 @@ export default function Main() {
         console.log(err);
       });
   }
+  const InitSubmit = () => {};
   useEffect(() => {
     const form = {
       educations: [],
@@ -71,7 +73,7 @@ export default function Main() {
     // window.scrollTo({ top: 0, behavior: "smooth" });
   };
   const PageIndexUp = () => {
-    if (parseInt(maxPage / 10) !== pageIdx) {
+    if (parseInt(maxPage / 10) !== pageIdx ) {
       setCurrentPage((pageIdx + 1) * 10 + 1);
       setPageIdx(pageIdx + 1);
     }
@@ -81,7 +83,7 @@ export default function Main() {
     sub();
     console.log("sub");
   }, [currentPage]);
-  console.log(user);
+  // console.log(user);
   const Lectures = lecs.map((lecture, idx) => (
     <S.LectureWrapper>
       <S.LectureItem>
@@ -151,7 +153,8 @@ export default function Main() {
       </div>
     </S.CateWrapper>
   ));
-  const Numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+  console.log(maxPage, currentPage, pageIdx);
+  const Numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
     <div
       onClick={() =>
         setCurrentPage(
@@ -179,10 +182,7 @@ export default function Main() {
         <S.CateLayout>
           <S.Home
             onClick={() => {
-              check.clear();
-              setCheck(check);
-              setCate([[], [], []]);
-              setName("");
+              window.location.href = "/";
             }}
           >
             <BiRefresh className="icon" color="white" />
