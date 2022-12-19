@@ -6,16 +6,29 @@ export const Wrapper = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  > div {
-    width: 90%;
+  padding-top: 7%;
+`;
+export const TitleBox = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid black;
+
+  > h1 {
+    font-size: 280%;
   }
-  > div h1 {
-    padding-bottom: 1%;
-    font-size: 300%;
-    border-bottom: 1.5px solid black;
-  }
+`;
+export const ModifyButton = styled.button`
+  border: none;
+  width: 13%;
+  height: 50px;
+  border-radius: 1000px;
+  font-size: 130%;
+  background-color: #118fff;
 `;
 
 export const ContentBox = styled.div`
@@ -29,22 +42,12 @@ export const ContentBox = styled.div`
 `;
 
 export const LeftBox = styled.div`
-  /* padding-top: 5%; */
-  /* margin-top: 5%; */
+  height: 100%;
   width: 65%;
   border-right: 1px solid black;
-  /* background-color: white; */
   h2 {
     font-size: 250%;
     margin-left: 5%;
-  }
-  div {
-    width: 100%;
-    text-align: center;
-    margin-top: 10%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
   div h3 {
     font-size: 200%;
@@ -53,26 +56,44 @@ export const LeftBox = styled.div`
     width: 90%;
     font-size: 130%;
   }
-  > p {
-    font-size: 130%;
-    margin-left: 5%;
-    width: 90%;
-  }
-  div:last-child {
-    background-color: lightgrey;
-    width: 90%;
-    margin-left: 5%;
-    margin-bottom: 5%;
-    height: 30vh;
-  }
   div:last-child p {
     text-align: start;
   }
 `;
+export const innerBox = styled.div`
+  width: 100%;
+  text-align: center;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 export const subTitle = styled.h2`
   margin-top: 5%;
 `;
-
+export const FileBox = styled.div`
+  width: 80%;
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 10%;
+`;
+export const File = styled.div`
+  width: 30%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  box-sizing: border-box;
+`;
+export const Download = styled.button`
+  border: 1px solid black;
+  width: 30%;
+  height: 100%;
+`;
 export const RightBox = styled.div`
   width: 35%;
   display: flex;

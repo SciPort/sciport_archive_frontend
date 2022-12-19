@@ -82,19 +82,19 @@ export default function Main() {
       });
   }, []);
 
-  const PageIndexDown = () => { 
+  const PageIndexDown = () => {
     if (pageIdx !== 0) {
       setCurrentPage((pageIdx - 1) * 10 + 1);
       setPageIdx(pageIdx - 1);
     }
-    // window.scrollTo({ top: 0, behavior: "smooth" }); 
+    // window.scrollTo({ top: 0, behavior: "smooth" });
   };
   const PageIndexUp = () => {
     if (parseInt(maxPage / 10) !== pageIdx) {
       setCurrentPage((pageIdx + 1) * 10 + 1);
       setPageIdx(pageIdx + 1);
     }
-    // window.scrollTo({ top: 0, behavior: "smooth" });  
+    // window.scrollTo({ top: 0, behavior: "smooth" });
   };
   useEffect(() => {
     sub();
@@ -170,12 +170,22 @@ export default function Main() {
   ));
   const Numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
     <div
-      onClick={() =>{setCurrentPage(pageIdx * 10 + num);} }
+      onClick={() => {
+        setCurrentPage(pageIdx * 10 + num);
+      }}
       className={currentPage === pageIdx * 10 + num ? "underline" : null}
     >
       {maxPage >= pageIdx * 10 + num ? pageIdx * 10 + num : ""}
     </div>
   ));
+  const createLec = () => {
+    if (user.isLogged) {
+      window.location.href = "/createLec";
+    } else {
+      alert("로그인 후 이용해주세요!");
+      window.location.href = "/login";
+    }
+  };
   return (
     <S.Layout>
       <S.Img src="https://www.sciport.or.kr/homepage/kor/_Img/Layout/svisual_MN035.jpg" />
@@ -213,12 +223,12 @@ export default function Main() {
       <S.LectureLayout>
         <S.Info>
           <span>프로그램 리스트</span>
-          <Link to="/createLec">
+          <div onClick={createLec}>
             <span>
               강좌 개설하기
               <AiFillFileAdd />
             </span>
-          </Link>
+          </div>
         </S.Info>
         {lecs.length === 0 ? (
           <span>검색 결과가 없습니다!</span>
