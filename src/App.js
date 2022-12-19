@@ -6,6 +6,7 @@ import Main from "./pages/main";
 import Register from "./pages/register/index";
 import Detail from "./pages/detail/index";
 import CreateLec from "./pages/createLec/index";
+import Modify from "./pages/modify/index";
 import { atom, RecoilRoot } from "recoil";
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/" element={<Main />} />
           <Route exact path="/detail" element={<Detail />} />
           <Route exact path="/createLec" element={<CreateLec />} />
+          <Route exact path="/modify" element={<Modify />} />
         </Routes>
         {/* </BrowserRouter> */}
       </RecoilRoot>
