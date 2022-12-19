@@ -4,7 +4,7 @@ import * as S from "./style";
 
 const Index = () => {
   const [registerData, setRegisterData] = useState({
-    id: "",
+    name: "",
     nickname: "",
     password: "",
     passwordCheck: "",
@@ -20,6 +20,7 @@ const Index = () => {
       })
       .catch((err) => {
         alert(err);
+        console.log(err);
       });
   };
   return (
@@ -34,7 +35,7 @@ const Index = () => {
         <S.RegisterForm onSubmit={RegisterFunc}>
           <input
             onChange={(e) => {
-              setRegisterData({ ...registerData, id: e.target.value });
+              setRegisterData({ ...registerData, name: e.target.value });
               console.log(registerData.name);
             }}
             placeholder="아이디"
@@ -69,10 +70,7 @@ const Index = () => {
           />
           <input value="회원가입" type="submit" onClick={RegisterFunc} />
         </S.RegisterForm>
-        <S.SubmitForm>
-          {/* <button style={{backgroundColor: "#2D97F8"}}>회원가입</button>
-          <button style={{backgroundColor: "#2D72F8"}}>아이디/비밀번호 찾기</button> */}
-        </S.SubmitForm>
+       
       </S.Register>
     </S.Wrapper>
   );
