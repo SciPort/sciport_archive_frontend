@@ -1,13 +1,15 @@
 import axios from "axios";
-import React, { useState } from "react";
-import * as S from "./style";
+import React, { useEffect, useState } from "react";
+import * as S from "../createLec/style";
 import * as D from "../main/style";
 import { atom, useRecoilState, useRecoilValue } from "recoil";
 import { list } from "../../assets/data/export";
 import { AiOutlineCheck, AiOutlineHome } from "react-icons/ai";
 import { BsArrowDownShort } from "react-icons/bs";
+import { useLocation } from "react-router-dom";
 
 const Index = () => {
+  const data = useLocation();
   const [lectureInfo, setLectureInfo] = useState({
     lecName: "",
     eduName: "",
@@ -16,6 +18,9 @@ const Index = () => {
     attachedFile: [],
     isDistanceClass: "",
   });
+  const [tableData, setTableData] = useState([]);
+  const id = data.state.id;
+  console.log(id);
   const [check, setCheck] = useState(new Set());
   const [bool, setBool] = useState(true);
   const [cate, setCate] = useState([[], [], []]);
@@ -110,6 +115,22 @@ const Index = () => {
     }
     setLectureInfo({ ...lectureInfo, isDistanceClass: checkThis.value });
   };
+  useEffect(() => {
+    axios
+      .get(`http://192.168.10.128:8080/lecture/getOneLecture?id=${id}`)
+      .then((res) => {
+        setLectureInfo(res.data);
+        setTableData([
+          lectureInfo.education,
+          lectureInfo.isDistanceClass,
+          lectureInfo.lesson,
+          lectureInfo.year,
+          lectureInfo.term,
+        ]);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <S.Wrapper>
       <p>교육 프로그램에 대한 설명을 적어주세요.</p>
@@ -119,9 +140,10 @@ const Index = () => {
           placeholder="프로그램 이름"
           height={"70px"}
           fontSize={"30px"}
-          onChange={(e) =>
-            setLectureInfo({ ...lectureInfo, lecName: e.target.value })
-          }
+          value={lectureInfo.lecName}
+          onChange={(e) => {
+            setLectureInfo({ ...lectureInfo, lecName: e.target.value });
+          }}
         />
         {/* <S.Input as={"div"}> */}
         <D.SearchBar>
@@ -144,6 +166,7 @@ const Index = () => {
           placeholder="교육명 입력"
           height={"50px"}
           fontSize={"25px"}
+          value={lectureInfo.eduName}
           onChange={(e) =>
             setLectureInfo({ ...lectureInfo, eduName: e.target.value })
           }
@@ -153,6 +176,7 @@ const Index = () => {
           as={"textarea"}
           height={"300px"}
           fontSize={"22px"}
+          value={lectureInfo.lecDescription}
           onChange={(e) =>
             setLectureInfo({ ...lectureInfo, lecDescription: e.target.value })
           }
