@@ -106,3 +106,6 @@ export const InBox = styled.div`
     padding: 20px;
   }
 `;
+export const CheckBoxes = styled.div`
+  display: flex;
+`
