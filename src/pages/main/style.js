@@ -73,7 +73,6 @@ export const Home = styled.div`
   > .icon {
     width: 60%;
     height: 60%;
-   
   }
 `;
 
@@ -129,7 +128,7 @@ export const DropItem = styled.div`
     border-right: 1px solid black;
     border-left: 1px solid black;
     background-color: ${(props) =>
-      props.bgcolor == "#0c2136" ? props.bgcolor : "#1876d7"};
+      props.bgcolor === "#0c2136" ? props.bgcolor : "#1876d7"};
     color: white;
     transition: all 0.2s ease;
   }
@@ -192,6 +191,7 @@ export const LectureList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 30px;
+  
 `;
 export const LectureItem = styled.div`
   height: 60vh;
@@ -223,11 +223,12 @@ export const LectureItem = styled.div`
     position: relative;
     transition: all 0.3s ease-out;
   }
-  span {
-    margin-top: 2%;
-    margin-left: 5%;
-  }
-  .desc .title {
+`;
+export const LectureInfo = styled.span`
+  margin-top: 2%;
+  margin-left: 5%;
+  /* white-space: nowrap; */
+  > span {
     color: #0060c4;
   }
 `;
@@ -235,6 +236,7 @@ export const LectureWrapper = styled.div`
   width: 100%;
   height: 100%;
   .mainTitle {
+    /* word-break : normal; */
     text-align: center;
     font-size: 150%;
     font-weight: bold;
@@ -267,7 +269,7 @@ export const Search = styled.div`
   }
 `;
 
-export const InpWrapper = styled.div`
+export const InpWrapper = styled.form`
   width: 50%;
   height: 100%;
   display: flex;
@@ -304,9 +306,9 @@ export const NumList = styled.div`
     align-items: center;
     justify-content: center;
   }
-  .underline{
-    text-decoration : underline;
-    text-underline-position : under
+  .underline {
+    text-decoration: underline;
+    text-underline-position: under;
   }
   .icon {
     width: 60%;

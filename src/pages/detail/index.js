@@ -1,59 +1,87 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import sample1 from "../../assets/img/sample1.png";
+import { userState } from "../../components/states";
 import { sampleList } from "../../assets/data/export.js";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useRecoilState } from "recoil";
 
 const Detail = () => {
+  const navi = useNavigate();
+  const [lecInfo, setLecInfo] = useState("");
+  const [tableData, setTableData] = useState([]);
   const data = useLocation();
   const id = data.state.id;
+  const [user, setUser] = useRecoilState(userState);
+  console.log(user);
   console.log(id);
+  useEffect(() => {
+    axios
+      .get(`http://192.168.10.128:8080/lecture/getOneLecture?id=${id}`)
+      .then((res) => {
+        setLecInfo(res.data);
+        setTableData([
+          lecInfo.education,
+          lecInfo.isDistanceClass,
+          lecInfo.lesson,
+          lecInfo.year,
+          lecInfo.term,
+        ]);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  const Modify = () => {
+    if (user.isLogged) {
+      // navi("/modify", { state: { id: id } })}
+      navi("/modify", { state: { id: id } });
+    } else {
+      alert("로그인 후 이용해주세요!");
+      window.location.href = "/login";
+    }
+  };
+  const downloadFile = () => {};
   return (
     <S.Wrapper>
-      <div>
-        <h1>내가 GREEN 방학 생활</h1>
-      </div>
+      <S.TitleBox>
+        <h1>{lecInfo.name}</h1>
+        <S.ModifyButton onClick={Modify}>수정하기</S.ModifyButton>
+      </S.TitleBox>
       <S.ContentBox>
         <S.LeftBox>
           <h2>교육프로그램 소개</h2>
-          <div>
-            <h3>강사 : ㅇㅇㅇ</h3>
-            <p>
-              대충 이러이러한 사람입니다.대충 이러이러한 사람입니다.대충
-              이러이러한 사람입니다.대충 이러이러한 사람입니다.대충 이러이러한
-              사람입니다.대충 이러이러한 사람입니다.대충 이러이러한
-              사람입니다.대충 이러이러한 사람입니다.대충 이러이러한 사람입니다.
-              대충 이러이러한 사람입니다.대충 이러이러한 사람입니다.대충
-              이러이러한 사람입니다.대충 이러이러한 사람입니다.대충 이러이러한
-              사람입니다.대충 이러이러한 사람입니다.대충 이러이러한 사람입니다.
-            </p>
-          </div>
-          <div>
-            <h3 style={{ color: "lightblue" }}>부제목(안 넣어도 됨)</h3>
-            <p>
-              대충 이 교육프로그램에 대한 설명대충 이 교육프로그램에 대한
-              설명대충 이 교육프로그램에 대한 설명대충 이 교육프로그램에 대한
-              설명대충 이 교육프로그램에 대한 설명대충 이 교육프로그램에 대한
-              설명대충 이 교육프로그램에 대한 설명대충 이 교육프로그램에 대한
-              설명대충 이 교육프로그램에 대한 설명대충 이 교육프로그램에 대한
-              설명대충 이 교육프로그램에 대한 설명대충 이 교육프로그램에 대한
-              설명
-            </p>
-          </div>
-          <h2>준비물</h2>
-          <p>필기구 등...</p>
-          <div>
-            <p>유의사항</p>
-          </div>
+          <S.innerBox>
+            <h3 style={{ color: "lightblue" }}>{lecInfo.eduName}</h3>
+            {lecInfo.content ? (
+              <p>{lecInfo.content}</p>
+            ) : (
+              <p>내용이 없습니다.</p>
+            )}
+          </S.innerBox>
+          <S.FileBox>
+            <S.File>
+              {lecInfo.fileName ? lecInfo.fileName : "첨부파일이 없습니다."}
+            </S.File>
+            <S.Download onClick={downloadFile}>
+              <a
+              // href={`http://192.168.10.128:8080/lecture/getFile?file=${lecInfo.fileUrl[0]}`}
+              ></a>
+              첨부파일 다운로드
+            </S.Download>
+          </S.FileBox>
         </S.LeftBox>
         <S.RightBox>
-          <img src={sample1} alt="" />
+          <img
+            src={`http://192.168.10.128:8080${lecInfo.posterUrl}`}
+            alt="포스터"
+          />
           <div>
             {sampleList.map((data, idx) => {
               return (
                 <S.ListBox>
-                  <span>{data[0]}</span>
-                  <p>{data[1]}</p>
+                  <span>{data}</span>
+                  <p>{tableData[idx]}</p>
                 </S.ListBox>
               );
             })}

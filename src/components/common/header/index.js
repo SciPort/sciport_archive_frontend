@@ -6,9 +6,11 @@ import { useRecoilState } from "recoil";
 import { useMemo } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { userState } from "../../states";
 
 const Header = () => {
   const [position, setPosition] = useState(0);
+  const [user, setUser] = useRecoilState(userState);
   function onScroll() {
     setPosition(window.scrollY);
   }
@@ -21,7 +23,6 @@ const Header = () => {
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
-
   return (
     <S.Head
       opacity={position > 0 ? "1" : "0.2"}
@@ -41,7 +42,9 @@ const Header = () => {
           <span
             onClick={() => {
               localStorage.removeItem("accessToken");
+              localStorage.removeItem("refreshToken");
               window.location.href = "/";
+              setUser({isLogged: false})
             }}
           >
             로그아웃

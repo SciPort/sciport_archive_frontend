@@ -1,20 +1,26 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "../createLec/style";
 import * as D from "../main/style";
+import { atom, useRecoilState, useRecoilValue } from "recoil";
+import { list } from "../../assets/data/export";
 import { AiOutlineCheck, AiOutlineHome } from "react-icons/ai";
 import { BsArrowDownShort } from "react-icons/bs";
+import { useLocation } from "react-router-dom";
 
 const Index = () => {
+  const data = useLocation();
   const [lectureInfo, setLectureInfo] = useState({
-    cate1: [],
-    cate2: [],
-    cate3: [],
     lecName: "",
+    eduName: "",
     lecDescription: "",
-    posterImage: [],
+    posterImage: "",
     attachedFile: [],
+    isDistanceClass: "",
   });
+  const [tableData, setTableData] = useState([]);
+  const id = data.state.id;
+  console.log(id);
   const [check, setCheck] = useState(new Set());
   const [bool, setBool] = useState(true);
   const [cate, setCate] = useState([[], [], []]);
@@ -30,15 +36,17 @@ const Index = () => {
       "여름학기",
       "가을학기(1)",
       "가을학기(2)",
+      "기타",
     ],
     [
       "유아과학교실",
       "창의탐구교실",
       "실험탐구교실",
-      "SW코딩교실",
+      "주제탐구교실",
+      "소프트웨어 코딩교실",
       "창작메이커교실",
       "프로젝트교실",
-      "후원회교육",
+      "기타",
     ],
   ];
   const Drops = list.map((data1, idx1) => (
@@ -77,25 +85,52 @@ const Index = () => {
     </D.CateWrapper>
   ));
 
-  const submitInfo = async () => {
-    // axios
-    //   .post("url", lectureInfo)
-    //   .then((response) => {
-    //     console.log(response);
-    //     window.location.href = "/";
-    //   })
-    //   .catch((error) => console.log(error));
-
-    try {
-      const response = await axios.post("url", lectureInfo);
-      console.log(response);
-      alert("강의 생성 성공");
-      window.location.href = "/";
-    } catch (error) {
-      console.log(error);
-      alert("강의 생성 실패");
-    }
+  const submitInfo = () => {
+    console.log(cate);
+    const form = new FormData();
+    console.log(lectureInfo);
+    form.append("name", lectureInfo.lecName);
+    form.append("eduName", lectureInfo.eduName);
+    form.append("content", lectureInfo.lecDescription);
+    form.append("education", cate[0][0]);
+    form.append("term", cate[1][0]);
+    form.append("lesson", cate[2][0]);
+    form.append("isDistanceClass", lectureInfo.isDistanceClass);
+    form.append("year", "2022");
+    form.append("poster", lectureInfo.posterImage);
+    form.append("file", lectureInfo.attachedFile);
+    axios
+      .post("http://192.168.10.128:8080/lecture/createLecture", form)
+      .then((res) => {})
+      .catch((err) => {
+        console.log(err);
+      });
   };
+  const checkOnlyOne = (checkThis) => {
+    const checkBox = document.getElementsByName("isDistanceClass");
+    for (let i = 0; i < checkBox.length; i++) {
+      if (checkBox[i] != checkThis) {
+        checkBox[i].checked = false;
+      }
+    }
+    setLectureInfo({ ...lectureInfo, isDistanceClass: checkThis.value });
+  };
+  useEffect(() => {
+    axios
+      .get(`http://192.168.10.128:8080/lecture/getOneLecture?id=${id}`)
+      .then((res) => {
+        setLectureInfo(res.data);
+        setTableData([
+          lectureInfo.education,
+          lectureInfo.isDistanceClass,
+          lectureInfo.lesson,
+          lectureInfo.year,
+          lectureInfo.term,
+        ]);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <S.Wrapper>
       <p>교육 프로그램에 대한 설명을 적어주세요.</p>
@@ -105,9 +140,10 @@ const Index = () => {
           placeholder="프로그램 이름"
           height={"70px"}
           fontSize={"30px"}
-          onChange={(e) =>
-            setLectureInfo({ ...lectureInfo, lecName: e.target.value })
-          }
+          value={lectureInfo.lecName}
+          onChange={(e) => {
+            setLectureInfo({ ...lectureInfo, lecName: e.target.value });
+          }}
         />
         {/* <S.Input as={"div"}> */}
         <D.SearchBar>
@@ -127,14 +163,44 @@ const Index = () => {
         </D.SearchBar>
         {/* </S.Input> */}
         <S.Input
+          placeholder="교육명 입력"
+          height={"50px"}
+          fontSize={"25px"}
+          value={lectureInfo.eduName}
+          onChange={(e) =>
+            setLectureInfo({ ...lectureInfo, eduName: e.target.value })
+          }
+        />
+        <S.Input
           placeholder="프로그램 설명"
           as={"textarea"}
           height={"300px"}
           fontSize={"22px"}
+          value={lectureInfo.lecDescription}
           onChange={(e) =>
             setLectureInfo({ ...lectureInfo, lecDescription: e.target.value })
           }
         />
+        <S.CheckBoxes>
+          <input
+            type={"checkbox"}
+            name={"isDistanceClass"}
+            value="원격"
+            onChange={(e) => {
+              checkOnlyOne(e.target);
+            }}
+          />
+          <label>원격</label>
+          <input
+            type={"checkbox"}
+            name={"isDistanceClass"}
+            value="대면"
+            onChange={(e) => {
+              checkOnlyOne(e.target);
+            }}
+          />
+          <label>대면</label>
+        </S.CheckBoxes>
         <S.FileBox>
           <S.InBox>
             <S.Label htmlFor="Poster">포스터 이미지파일</S.Label>
@@ -144,7 +210,7 @@ const Index = () => {
               onChange={(file) =>
                 setLectureInfo({
                   ...lectureInfo,
-                  posterImage: file.target.value,
+                  posterImage: file.target.files[0],
                 })
               }
             />
@@ -157,7 +223,7 @@ const Index = () => {
               onChange={(files) =>
                 setLectureInfo({
                   ...lectureInfo,
-                  attachedFile: files.target.value,
+                  attachedFile: files.target.files[0],
                 })
               }
             />
