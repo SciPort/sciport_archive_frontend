@@ -127,7 +127,10 @@ const Index = () => {
     console.log(form);
     axios
       .post("http://192.168.10.128:8080/lecture/modifyLecture", form)
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        console.log(res.data);
+        window.location.href = "/";
+      })
       .catch((err) => console.log(err));
   };
   console.log(lectureInfo);
@@ -249,7 +252,6 @@ const Index = () => {
             });
             // submitInfo();
             modifyLecture();
-            console.log(lectureInfo);
           }}
         >
           수정 완료
