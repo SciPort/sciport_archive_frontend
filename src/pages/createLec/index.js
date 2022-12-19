@@ -15,6 +15,7 @@ const Index = () => {
     posterImage: "",
     attachedFile: [],
     isDistanceClass: "",
+    year: "",
   });
   const [check, setCheck] = useState(new Set());
   const [bool, setBool] = useState(true);
@@ -91,7 +92,7 @@ const Index = () => {
     form.append("term", cate[1][0]);
     form.append("lesson", cate[2][0]);
     form.append("isDistanceClass", lectureInfo.isDistanceClass);
-    form.append("year", "2022");
+    form.append("year", lectureInfo.year);
     form.append("poster", lectureInfo.posterImage);
     form.append("file", lectureInfo.attachedFile);
     axios
@@ -158,25 +159,37 @@ const Index = () => {
           }
         />
         <S.CheckBoxes>
-          <input
-            type={"checkbox"}
-            name={"isDistanceClass"}
-            value="원격"
-            onChange={(e) => {
-              checkOnlyOne(e.target);
-            }}
-          />
-          <label>원격</label>
-          <input
-            type={"checkbox"}
-            name={"isDistanceClass"}
-            value="대면"
-            onChange={(e) => {
-              checkOnlyOne(e.target);
-            }}
-          />
-          <label>대면</label>
+          <div>
+            <input
+              type={"checkbox"}
+              name={"isDistanceClass"}
+              value="원격"
+              onChange={(e) => {
+                checkOnlyOne(e.target);
+              }}
+            />
+            <label>원격</label>
+          </div>
+          <div>
+            <input
+              type={"checkbox"}
+              name={"isDistanceClass"}
+              value="대면"
+              onChange={(e) => {
+                checkOnlyOne(e.target);
+              }}
+            />
+            <label>대면</label>
+          </div>
         </S.CheckBoxes>
+        <S.Input
+          placeholder="교육 연도"
+          height={"40px"}
+          fontSize={"23px"}
+          onChange={(e) =>
+            setLectureInfo({ ...lectureInfo, year: e.target.value })
+          }
+        />
         <S.FileBox>
           <S.InBox>
             <S.Label htmlFor="Poster">포스터 이미지파일</S.Label>
@@ -214,7 +227,7 @@ const Index = () => {
               cate2: cate[1],
               cate3: cate[2],
             });
-            // submitInfo();
+            submitInfo();
             console.log(lectureInfo);
           }}
         >

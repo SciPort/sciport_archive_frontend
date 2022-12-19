@@ -14,19 +14,18 @@ const Detail = () => {
   const data = useLocation();
   const id = data.state.id;
   const [user, setUser] = useRecoilState(userState);
-  console.log(user);
-  console.log(id);
+  console.log(tableData);
   useEffect(() => {
     axios
       .get(`http://192.168.10.128:8080/lecture/getOneLecture?id=${id}`)
       .then((res) => {
         setLecInfo(res.data);
         setTableData([
-          lecInfo.education,
-          lecInfo.isDistanceClass,
-          lecInfo.lesson,
-          lecInfo.year,
-          lecInfo.term,
+          res.data.education,
+          res.data.isDistanceClass,
+          res.data.lesson,
+          res.data.year,
+          res.data.term,
         ]);
         console.log(res.data);
       })
@@ -65,9 +64,10 @@ const Detail = () => {
             </S.File>
             <S.Download onClick={downloadFile}>
               <a
-              // href={`http://192.168.10.128:8080/lecture/getFile?file=${lecInfo.fileUrl[0]}`}
-              ></a>
-              첨부파일 다운로드
+                href={`http://192.168.10.128:8080/lecture/getFile/${lecInfo.fileName}`}
+              >
+                첨부파일 다운로드
+              </a>
             </S.Download>
           </S.FileBox>
         </S.LeftBox>
