@@ -14,15 +14,17 @@ const Index = () => {
     cate2: [],
     cate3: [],
     lecName: "",
+    eduName: "",
     lecDescription: "",
-    posterImage: [],
+    posterImage: "",
     attachedFile: [],
+    isDistanceClass: "",
   });
   const [check, setCheck] = useState(new Set());
   const [bool, setBool] = useState(true);
   const [cate, setCate] = useState([[], [], []]);
   const [inp, setInp] = useState("");
-  const [chg, setChg] = useState(false);
+  const [chg, setChg] = useState(false);  
   const title = ["교육", "학기", "교실"];
   const list = [
     ["개인교육", "단체교육", "성인교육"],
@@ -33,15 +35,17 @@ const Index = () => {
       "여름학기",
       "가을학기(1)",
       "가을학기(2)",
+      "기타"
     ],
     [
       "유아과학교실",
       "창의탐구교실",
       "실험탐구교실",
-      "SW코딩교실",
+      "주제탐구교실",
+      "소프트웨어 코딩교실",
       "창작메이커교실",
       "프로젝트교실",
-      "후원회교육",
+      "기타"
     ],
   ];
   const Drops = list.map((data1, idx1) => (
@@ -80,23 +84,36 @@ const Index = () => {
     </D.CateWrapper>
   ));
 
-  const submitInfo = async () => {
-    // axios
-    //   .post("url", lectureInfo)
-    //   .then((response) => {
-    //     console.log(response);
-    //     window.location.href = "/";
-    //   })
-    //   .catch((error) => console.log(error));
-
-    try {
-      const response = await axios.post("url", lectureInfo);
-      console.log(response);
-      window.location.href = "/";
-    } catch (error) {
-      console.log(error);
-    }
+  const submitInfo = () => {
+    console.log(lectureInfo);
+    const form = new FormData();
+    form.append("name", lectureInfo.lecName);
+    form.append("eduName", lectureInfo.eduName);
+    form.append("content", lectureInfo.lecDescription);
+    form.append("education", "개인교육");
+    form.append("term", "겨울학기");
+    form.append("lesson", "유아과학교실");
+    form.append("isDistanceClass", lectureInfo.isDistanceClass);
+    form.append("year", "2022");
+    form.append("poster", lectureInfo.posterImage);
+    form.append("file", lectureInfo.attachedFile);
+    axios.post("http://192.168.10.128:8080/lecture/createLecture", form)
+    .then(res => {
+      
+    })
+    .catch(err => {
+      console.log(err);
+    })
   };
+  const checkOnlyOne = (checkThis) => {
+    const checkBox = document.getElementsByName('isDistanceClass');
+    for(let i = 0; i < checkBox.length; i++){
+      if(checkBox[i] != checkThis){
+        checkBox[i].checked = false;
+      }
+    }
+    setLectureInfo({...lectureInfo, isDistanceClass: checkThis.value});
+  }
   return (
     <S.Wrapper>
       <p>교육 프로그램에 대한 설명을 적어주세요.</p>
@@ -127,6 +144,14 @@ const Index = () => {
           {/* <D.InputLayout>HI</D.InputLayout> */}
         </D.SearchBar>
         {/* </S.Input> */}
+        <S.Input 
+          placeholder="교육명 입력" 
+          height={"50px"}
+          fontSize={'25px'}
+          onChange={(e) => 
+            setLectureInfo({...lectureInfo, eduName: e.target.value})
+          }
+        />
         <S.Input
           placeholder="프로그램 설명"
           as={"textarea"}
@@ -136,6 +161,10 @@ const Index = () => {
             setLectureInfo({ ...lectureInfo, lecDescription: e.target.value })
           }
         />
+        <S.CheckBoxes>
+        <input type={"checkbox"} name={"isDistanceClass"} value="원격" onChange={(e) => {checkOnlyOne(e.target)}} /><label>원격</label>
+        <input type={"checkbox"} name={"isDistanceClass"} value="대면" onChange={(e) => {checkOnlyOne(e.target)}} /><label>대면</label>
+        </S.CheckBoxes>
         <S.FileBox>
           <S.InBox>
             <S.Label htmlFor="Poster">포스터 이미지파일</S.Label>
@@ -145,7 +174,7 @@ const Index = () => {
               onChange={(file) =>
                 setLectureInfo({
                   ...lectureInfo,
-                  posterImage: file.target.value,
+                  posterImage: file.target.files[0],
                 })
               }
             />
@@ -158,7 +187,7 @@ const Index = () => {
               onChange={(files) =>
                 setLectureInfo({
                   ...lectureInfo,
-                  attachedFile: files.target.value,
+                  attachedFile: files.target.files[0],
                 })
               }
             />
