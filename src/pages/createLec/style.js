@@ -107,5 +107,20 @@ export const InBox = styled.div`
   }
 `;
 export const CheckBoxes = styled.div`
+  width: 20%;
   display: flex;
-`
+  align-items: center;
+  justify-content: space-between;
+  font-size: 150%;
+  font-weight: 600;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+
+  input {
+    width: 25px;
+    height: 25px;
+  }
+`;

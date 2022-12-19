@@ -10,7 +10,15 @@ import { useLocation } from "react-router-dom";
 
 const Index = () => {
   const data = useLocation();
-  const [lectureInfo, setLectureInfo] = useState({});
+  const [lectureInfo, setLectureInfo] = useState({
+    lecName: "",
+    eduName: "",
+    lecDescription: "",
+    posterImage: "",
+    attachedFile: [],
+    isDistanceClass: "",
+    year: "",
+  });
   const [tableData, setTableData] = useState([]);
   const id = data.state.id;
   console.log(id);
@@ -54,28 +62,6 @@ const Index = () => {
       </div>
     </D.CateWrapper>
   ));
-
-  const submitInfo = () => {
-    console.log(cate);
-    const form = new FormData();
-    console.log(lectureInfo);
-    form.append("name", lectureInfo.lecName);
-    form.append("eduName", lectureInfo.eduName);
-    form.append("content", lectureInfo.lecDescription);
-    form.append("education", cate[0][0]);
-    form.append("term", cate[1][0]);
-    form.append("lesson", cate[2][0]);
-    form.append("isDistanceClass", lectureInfo.isDistanceClass);
-    form.append("year", "2022");
-    form.append("poster", lectureInfo.posterImage);
-    form.append("file", lectureInfo.attachedFile);
-    axios
-      .post("http://192.168.10.128:8080/lecture/createLecture", form)
-      .then((res) => {})
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   const checkOnlyOne = (checkThis) => {
     const checkBox = document.getElementsByName("isDistanceClass");
     for (let i = 0; i < checkBox.length; i++) {
@@ -89,15 +75,18 @@ const Index = () => {
     axios
       .get(`http://192.168.10.128:8080/lecture/getOneLecture?id=${id}`)
       .then((res) => {
-        setLectureInfo(res.data);
-        setTableData([
-          lectureInfo.education,
-          lectureInfo.isDistanceClass,
-          lectureInfo.lesson,
-          lectureInfo.year,
-          lectureInfo.term,
-        ]);
-        setCate([lectureInfo.education, lectureInfo.term, lectureInfo.lesson]);
+        const set = {
+          lecName: res.data.name,
+          eduName: res.data.eduName,
+          lecDescription: res.data.content,
+          isDistanceClass: res.data.isDistanceClass,
+          year: res.data.year,
+          posterImage: "",
+          attachedFile: [],
+        };
+        setLectureInfo(set);
+        console.log("edu" + res.data.education);
+        setCate([[res.data.education], [res.data.term], [res.data.lesson]]);
         list.map((data1, idx1) => {
           data1.map((data2, idx2) => {
             if (
@@ -119,7 +108,29 @@ const Index = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log(check);
+  const modifyLecture = () => {
+    const form = new FormData();
+    console.log(cate);
+    form.append("id", id);
+    form.append("name", lectureInfo.lecName);
+    form.append("eduName", lectureInfo.eduName);
+    form.append("content", lectureInfo.lecDescription);
+    form.append("education", cate[0][0]);
+    form.append("term", cate[1][0]);
+    form.append("lesson", cate[2][0]);
+    form.append("isDistanceClass", lectureInfo.isDistanceClass);
+    form.append("year", "2022");
+    form.append("poster", lectureInfo.posterImage);
+    if (lectureInfo.attachedFile.length >= 1) {
+      form.append("file", lectureInfo.attachedFile);
+    }
+    console.log(form);
+    axios
+      .post("http://192.168.10.128:8080/lecture/modifyLecture", form)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  };
+  console.log(lectureInfo);
   return (
     <S.Wrapper>
       <p>교육 프로그램에 대한 설명을 적어주세요.</p>
@@ -129,9 +140,9 @@ const Index = () => {
           placeholder="프로그램 이름"
           height={"70px"}
           fontSize={"30px"}
-          value={lectureInfo.name}
+          value={lectureInfo.lecName}
           onChange={(e) => {
-            setLectureInfo({ ...lectureInfo, name: e.target.value });
+            setLectureInfo({ ...lectureInfo, lecName: e.target.value });
           }}
         />
         {/* <S.Input as={"div"}> */}
@@ -163,9 +174,9 @@ const Index = () => {
           as={"textarea"}
           height={"300px"}
           fontSize={"22px"}
-          value={lectureInfo?.content}
+          value={lectureInfo?.lecDescription}
           onChange={(e) =>
-            setLectureInfo({ ...lectureInfo, content: e.target.value })
+            setLectureInfo({ ...lectureInfo, lecDescription: e.target.value })
           }
         />
         <S.CheckBoxes>
@@ -188,6 +199,15 @@ const Index = () => {
           />
           <label>대면</label>
         </S.CheckBoxes>
+        <S.Input
+          placeholder="교육 연도"
+          height={"40px"}
+          fontSize={"23px"}
+          value={lectureInfo.year}
+          onChange={(e) =>
+            setLectureInfo({ ...lectureInfo, year: e.target.value })
+          }
+        />
         <S.FileBox>
           <S.InBox>
             <S.Label htmlFor="Poster">포스터 이미지파일</S.Label>
@@ -228,6 +248,7 @@ const Index = () => {
               cate3: cate[2],
             });
             // submitInfo();
+            modifyLecture();
             console.log(lectureInfo);
           }}
         >
