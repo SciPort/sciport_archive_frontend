@@ -55,17 +55,3 @@ export const RegisterForm = styled.form`
     color: white;
   }
 `;
-export const SubmitForm = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 13%;
-
-  button {
-    width: 50%;
-    height: 100%;
-    border: none;
-    color: white;
-    font-size: 120%;
-  }
-`;

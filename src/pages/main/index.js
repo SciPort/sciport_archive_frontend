@@ -13,6 +13,7 @@ import { BsArrowDownShort } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { userState } from "../../components/states";
 import { useRecoilState } from "recoil";
+import { list } from "../../assets/data/export";
 export default function Main() {
   const navi = useNavigate();
   const [name, setName] = useState("");
@@ -25,26 +26,6 @@ export default function Main() {
   const [pageIdx, setPageIdx] = useState(0);
   const [user, setUser] = useRecoilState(userState);
   const title = ["교육", "학기", "교실"];
-  const list = [
-    ["개인교육", "단체교육", "성인교육"],
-    [
-      "겨울학기",
-      "봄학기(1)",
-      "봄학기(2)",
-      "여름학기",
-      "가을학기(1)",
-      "가을학기(2)",
-    ],
-    [
-      "유아과학교실",
-      "창의탐구교실",
-      "실험탐구교실",
-      "소프트웨어 코딩교실",
-      "창작메이커교실",
-      "프로젝트교실",
-      "주제탐구교실",
-    ],
-  ];
   function sub() {
     const form = {
       educations: cate[0],
@@ -98,6 +79,7 @@ export default function Main() {
   };
   useEffect(() => {
     sub();
+    console.log("sub");
   }, [currentPage]);
   console.log(user);
   const Lectures = lecs.map((lecture, idx) => (
@@ -113,21 +95,22 @@ export default function Main() {
           className="desc"
           onClick={() => navi("/detail", { state: { id: lecture["id"] } })}
         >
-          <span>
-            <span className="title">학기</span> {lecture["term"]}
-          </span>
-          <span>
-            <span className="title">교육기관</span> {lecture["eduName"]}
-          </span>
-          <span>
+          <S.LectureInfo>
+            <span>학기명</span> {lecture["term"]}
+          </S.LectureInfo>
+          <S.LectureInfo>
+            <span className="title">기관명</span> {lecture["eduName"]}
+          </S.LectureInfo>
+          <S.LectureInfo>
             <span className="title">교육명</span> {lecture["education"]}
-          </span>
-          <span>
+          </S.LectureInfo>
+          <S.LectureInfo>
             <span className="title">교실명</span> {lecture["lesson"]}
-          </span>
-          <span>
+          </S.LectureInfo>
+          <S.LectureInfo>
             <span className="title">강좌명</span> {lecture["name"]}
-          </span>
+          </S.LectureInfo>
+          <span className="info"></span>
         </div>
       </S.LectureItem>
       <div className="mainTitle">{lecture["name"]}</div>
@@ -170,9 +153,11 @@ export default function Main() {
   ));
   const Numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
     <div
-      onClick={() => {
-        setCurrentPage(pageIdx * 10 + num);
-      }}
+      onClick={() =>
+        setCurrentPage(
+          maxPage >= pageIdx * 10 + num ? pageIdx * 10 + num : currentPage
+        )
+      }
       className={currentPage === pageIdx * 10 + num ? "underline" : null}
     >
       {maxPage >= pageIdx * 10 + num ? pageIdx * 10 + num : ""}
@@ -197,18 +182,21 @@ export default function Main() {
               check.clear();
               setCheck(check);
               setCate([[], [], []]);
+              setName("");
             }}
           >
             <BiRefresh className="icon" color="white" />
           </S.Home>
           {Drops}
         </S.CateLayout>
-        <S.InpWrapper>
+        <S.InpWrapper onSubmit={sub}>
           <S.Input
             placeholder="검색어를 입력해 주세요"
             type="text"
+            value={name}
             onChange={(e) => setName(e.target.value)}
           />
+
           <S.Search
             onClick={() => {
               sub();
