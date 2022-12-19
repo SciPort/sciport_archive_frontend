@@ -10,45 +10,15 @@ import { useLocation } from "react-router-dom";
 
 const Index = () => {
   const data = useLocation();
-  const [lectureInfo, setLectureInfo] = useState({
-    lecName: "",
-    eduName: "",
-    lecDescription: "",
-    posterImage: "",
-    attachedFile: [],
-    isDistanceClass: "",
-  });
+  const [lectureInfo, setLectureInfo] = useState({});
   const [tableData, setTableData] = useState([]);
   const id = data.state.id;
   console.log(id);
   const [check, setCheck] = useState(new Set());
   const [bool, setBool] = useState(true);
   const [cate, setCate] = useState([[], [], []]);
-  const [inp, setInp] = useState("");
   const [chg, setChg] = useState(false);
   const title = ["교육", "학기", "교실"];
-  const list = [
-    ["개인교육", "단체교육", "성인교육"],
-    [
-      "겨울학기",
-      "봄학기(1)",
-      "봄학기(2)",
-      "여름학기",
-      "가을학기(1)",
-      "가을학기(2)",
-      "기타",
-    ],
-    [
-      "유아과학교실",
-      "창의탐구교실",
-      "실험탐구교실",
-      "주제탐구교실",
-      "소프트웨어 코딩교실",
-      "창작메이커교실",
-      "프로젝트교실",
-      "기타",
-    ],
-  ];
   const Drops = list.map((data1, idx1) => (
     <D.CateWrapper>
       <D.Cate>
@@ -127,10 +97,29 @@ const Index = () => {
           lectureInfo.year,
           lectureInfo.term,
         ]);
-        console.log(res.data);
+        setCate([lectureInfo.education, lectureInfo.term, lectureInfo.lesson]);
+        list.map((data1, idx1) => {
+          data1.map((data2, idx2) => {
+            if (
+              data2 === res.data.education ||
+              data2 === res.data.term ||
+              data2 === res.data.lesson
+            ) {
+              check.add(idx1.toString() + idx2.toString());
+              setCheck(check);
+            }
+          });
+        });
+        const checkBox = document.getElementsByName("isDistanceClass");
+        for (let i = 0; i < checkBox.length; i++) {
+          if (checkBox[i].value === res.data.isDistanceClass) {
+            checkBox[i].checked = true;
+          }
+        }
       })
       .catch((err) => console.log(err));
   }, []);
+  console.log(check);
   return (
     <S.Wrapper>
       <p>교육 프로그램에 대한 설명을 적어주세요.</p>
@@ -140,9 +129,9 @@ const Index = () => {
           placeholder="프로그램 이름"
           height={"70px"}
           fontSize={"30px"}
-          value={lectureInfo.lecName}
+          value={lectureInfo.name}
           onChange={(e) => {
-            setLectureInfo({ ...lectureInfo, lecName: e.target.value });
+            setLectureInfo({ ...lectureInfo, name: e.target.value });
           }}
         />
         {/* <S.Input as={"div"}> */}
@@ -159,9 +148,7 @@ const Index = () => {
             </D.Home>
             {Drops}
           </D.CateLayout>
-          {/* <D.InputLayout>HI</D.InputLayout> */}
         </D.SearchBar>
-        {/* </S.Input> */}
         <S.Input
           placeholder="교육명 입력"
           height={"50px"}
@@ -176,9 +163,9 @@ const Index = () => {
           as={"textarea"}
           height={"300px"}
           fontSize={"22px"}
-          value={lectureInfo.lecDescription}
+          value={lectureInfo?.content}
           onChange={(e) =>
-            setLectureInfo({ ...lectureInfo, lecDescription: e.target.value })
+            setLectureInfo({ ...lectureInfo, content: e.target.value })
           }
         />
         <S.CheckBoxes>
@@ -207,6 +194,7 @@ const Index = () => {
             <input
               type="file"
               accept={[".png", ".jpeg", ".jpg", ".svg"]}
+              value={lectureInfo.files}
               onChange={(file) =>
                 setLectureInfo({
                   ...lectureInfo,
@@ -220,6 +208,7 @@ const Index = () => {
             <input
               type="file"
               multiple
+              value={lectureInfo.files}
               onChange={(files) =>
                 setLectureInfo({
                   ...lectureInfo,
@@ -242,7 +231,7 @@ const Index = () => {
             console.log(lectureInfo);
           }}
         >
-          완료
+          수정 완료
         </S.Submit>
       </div>
     </S.Wrapper>

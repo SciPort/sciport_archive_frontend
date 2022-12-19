@@ -214,7 +214,7 @@ const Index = () => {
               cate2: cate[1],
               cate3: cate[2],
             });
-            // submitInfo();
+            submitInfo();
             console.log(lectureInfo);
           }}
         >

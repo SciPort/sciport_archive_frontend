@@ -65,9 +65,10 @@ const Detail = () => {
             </S.File>
             <S.Download onClick={downloadFile}>
               <a
-              // href={`http://192.168.10.128:8080/lecture/getFile?file=${lecInfo.fileUrl[0]}`}
-              ></a>
-              첨부파일 다운로드
+                href={`http://192.168.10.128:8080/lecture/getFile/${lecInfo.fileName}`}
+              >
+                첨부파일 다운로드
+              </a>
             </S.Download>
           </S.FileBox>
         </S.LeftBox>
