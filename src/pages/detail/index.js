@@ -2,8 +2,12 @@ import React from "react";
 import * as S from "./style";
 import sample1 from "../../assets/img/sample1.png";
 import { sampleList } from "../../assets/data/export.js";
+import { useLocation } from "react-router-dom";
 
-const index = () => {
+const Detail = () => {
+  const data = useLocation();
+  const id = data.state.id;
+  console.log(id);
   return (
     <S.Wrapper>
       <div>
@@ -60,4 +64,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Detail;

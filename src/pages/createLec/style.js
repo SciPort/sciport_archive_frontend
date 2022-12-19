@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #000068;
+  background-color: #1876d7;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -106,3 +106,6 @@ export const InBox = styled.div`
     padding: 20px;
   }
 `;
+export const CheckBoxes = styled.div`
+  display: flex;
+`
