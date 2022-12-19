@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import * as S from "./style";
+import { userState } from "../../components/states";
+import { useRecoilState } from "recoil";
 
 const Index = () => {
+  const [user, setUser] = useRecoilState(userState);
   const [loginData, setLoginData] = useState({
     name: "",
     password: "",
@@ -20,6 +23,7 @@ const Index = () => {
           console.log(res.data);
           localStorage.setItem("accessToken", res.data.accessToken);
           localStorage.setItem("refreshToken", res.data.refreshToken);
+          setUser({id: res.data.id, nickname: res.data.nickname, isLogged: true});
           window.location.replace("/");
         })
         .catch((err) => {
