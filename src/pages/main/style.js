@@ -61,7 +61,7 @@ export const Text = styled.span`
   width: 100%;
   text-align: center;
   color: white;
-  font-size: 2.5vw;
+  font-size: 2.5rem;
 `;
 export const Home = styled.div`
   width: 40%;
@@ -81,7 +81,7 @@ export const Cate = styled.div`
   height: 100%;
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   box-sizing: border-box;
-  font-size: 1vw;
+  font-size: 1rem;
   color: white;
   display: flex;
   align-items: center;
@@ -136,7 +136,7 @@ export const DropItem = styled.div`
     transition: all 0.2s ease;
   }
   > span {
-    font-size: 1vw;
+    font-size: 0.9rem;
     margin-left: 1vh;
   }
   > .icon {
@@ -181,7 +181,7 @@ export const LectureLayout = styled.div`
   flex-direction: column;
   > span {
     margin-top: 5%;
-    font-size: 250%;
+    font-size: 3rem;
     font-weight: bold;
     text-align: center;
   }
@@ -216,7 +216,7 @@ export const LectureItem = styled.div`
     flex-direction: column;
     justify-content: center;
     font-weight: bold;
-    font-size: 1.5vw;
+    font-size: 1.5rem;
     background-color: rgba(255, 255, 255, 0.9);
     width: 100%;
     height: 100%;
@@ -239,7 +239,7 @@ export const LectureWrapper = styled.div`
   .mainTitle {
     /* word-break : normal; */
     text-align: center;
-    font-size: 150%;
+    font-size: 1.5rem;
     font-weight: bold;
   }
 `;
@@ -250,7 +250,7 @@ export const Input = styled.input`
   &:focus {
     outline: none;
   }
-  font-size: 3vh;
+  font-size: 1.5rem;
 `;
 export const Search = styled.div`
   width: 15%;
@@ -278,7 +278,7 @@ export const InpWrapper = styled.form`
 `;
 
 export const Info = styled.div`
-  font-size: 3vw;
+  font-size: 3rem;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
@@ -300,7 +300,7 @@ export const NumList = styled.div`
   width: 50%;
   height: 100%;
   display: grid;
-  font-size: 150%;
+  font-size: 1.5rem;
   grid-template-columns: repeat(12, 1fr);
   > div {
     display: flex;

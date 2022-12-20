@@ -19,7 +19,7 @@ export const Head = styled.div`
   transition: all 0.3s ease;
 `;
 export const Home = styled.div`
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
   a {
     text-decoration: none;
@@ -33,7 +33,6 @@ export const Login = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 200px;
   justify-content: space-around;
   color: black;
   font-weight: 700;
