@@ -97,7 +97,9 @@ const Index = () => {
     form.append("file", lectureInfo.attachedFile);
     axios
       .post("http://192.168.10.128:8080/lecture/createLecture", form)
-      .then((res) => {})
+      .then((res) => {
+        window.location.href = "/";
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -228,7 +230,6 @@ const Index = () => {
               cate3: cate[2],
             });
             submitInfo();
-            console.log(lectureInfo);
           }}
         >
           완료

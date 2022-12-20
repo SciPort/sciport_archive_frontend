@@ -121,13 +121,17 @@ const Index = () => {
     form.append("isDistanceClass", lectureInfo.isDistanceClass);
     form.append("year", "2022");
     form.append("poster", lectureInfo.posterImage);
-    if (lectureInfo.attachedFile.length >= 1) {
+    if (lectureInfo.attachedFile.length === 0) {
+    } else {
       form.append("file", lectureInfo.attachedFile);
     }
     console.log(form);
     axios
       .post("http://192.168.10.128:8080/lecture/modifyLecture", form)
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        console.log(res.data);
+        window.location.href = "/";
+      })
       .catch((err) => console.log(err));
   };
   console.log(lectureInfo);
@@ -249,7 +253,6 @@ const Index = () => {
             });
             // submitInfo();
             modifyLecture();
-            console.log(lectureInfo);
           }}
         >
           수정 완료
