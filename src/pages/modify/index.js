@@ -121,7 +121,8 @@ const Index = () => {
     form.append("isDistanceClass", lectureInfo.isDistanceClass);
     form.append("year", "2022");
     form.append("poster", lectureInfo.posterImage);
-    if (lectureInfo.attachedFile.length >= 1) {
+    if (lectureInfo.attachedFile.length === 0) {
+    } else {
       form.append("file", lectureInfo.attachedFile);
     }
     console.log(form);

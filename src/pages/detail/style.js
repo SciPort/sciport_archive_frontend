@@ -29,6 +29,7 @@ export const ModifyButton = styled.button`
   border-radius: 1000px;
   font-size: 130%;
   background-color: #118fff;
+  color: white;
 `;
 
 export const ContentBox = styled.div`
@@ -44,7 +45,6 @@ export const ContentBox = styled.div`
 export const LeftBox = styled.div`
   height: 100%;
   width: 65%;
-  border-right: 1px solid black;
   h2 {
     font-size: 250%;
     margin-left: 5%;
@@ -99,6 +99,8 @@ export const RightBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-left: 1px solid black;
+  padding-bottom: 3%;
 
   img {
     width: 70%;
